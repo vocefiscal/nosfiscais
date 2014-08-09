@@ -1,0 +1,21 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "accounts-guest": {},
+      "accounts-ui-bootstrap-dropdown": {}
+    },
+    "packages": {
+      "accounts-guest": {
+        "git": "https://github.com/artwells/meteor-accounts-guest.git",
+        "tag": "v0.0.6",
+        "commit": "f40bcf1f9e5999c70ab81a4f1e7a39f3ce78aa57"
+      },
+      "accounts-ui-bootstrap-dropdown": {
+        "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
+        "tag": "v0.8.3",
+        "commit": "a7af8a52e4e74db020a69b158a8f992797b8b0b0"
+      }
+    }
+  }
+}
