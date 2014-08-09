@@ -11,3 +11,4 @@ accounts-password
 accounts-guest
 accounts-ui-bootstrap-dropdown
 bootstrap
+iron-router

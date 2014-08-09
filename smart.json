@@ -1,6 +1,7 @@
 {
   "packages": {
     "accounts-guest": {},
-    "accounts-ui-bootstrap-dropdown": {}
+    "accounts-ui-bootstrap-dropdown": {},
+    "iron-router": {}
   }
 }
