@@ -1,94 +1,55 @@
-.grid-block, .main, .locator, .comments li, .comment-form {
-    background: #fff;
-    border-radius: 3px;
-    padding: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-}
+/* Space out content a bit */
 body {
-    background: #eee;
-    color: #666666;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-.navbar { margin-bottom: 10px }
-.navbar .navbar-inner {
-    border-radius: 0px 0px 3px 3px;
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
 }
-#spinner { height: 300px }
-.locator {
-    *zoom: 1;
-    -webkit-transition: all 300ms 0ms;
-    -webkit-transition-delay: ease-in;
-    -moz-transition: all 300ms 0ms ease-in;
-    -o-transition: all 300ms 0ms ease-in;
-    transition: all 300ms 0ms ease-in;
-    position: relative;
-    opacity: 1;
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
 }
-.locator:before, .locator:after {
-    content: "";
-    display: table;
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  padding-bottom: 19px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
 }
-.locator:after { clear: both }
-.locator.invisible { opacity: 0 }
-.locator .upvote {
-    display: block;
-    margin: 7px 12px 0 0;
-    float: left;
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
 }
-.locator .locator-content { float: left }
-.locator .locator-content h3 {
-    margin: 0;
-    line-height: 1.4;
-    font-size: 18px;
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
 }
-.locator .locator-content h3 a {
-    display: inline-block;
-    margin-right: 5px;
+.container-narrow > hr {
+  margin: 30px 0;
 }
-.locator .locator-content h3 span {
-    font-weight: normal;
-    font-size: 14px;
-    display: inline-block;
-    color: #aaaaaa;
-}
-.locator .locator-content p { margin: 0 }
-.locator .discuss {
-    display: block;
-    float: right;
-    margin-top: 7px;
-}
-.comments {
-    list-style-type: none;
-    margin: 0;
-}
-.comments li h4 {
-    font-size: 16px;
-    margin: 0;
-}
-.comments li h4 .date {
-    font-size: 12px;
-    font-weight: normal;
-}
-.comments li h4 a { font-size: 12px }
-.comments li p:last-child { margin-bottom: 0 }
-.dropdown-menu span {
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    line-height: 20px;
-    color: #bbb;
-    white-space: nowrap;
-}
-.load-more {
-    display: block;
-    border-radius: 3px;
-    background: rgba(0, 0, 0, 0.05);
-    text-align: center;
-    height: 60px;
-    line-height: 60px;
-    margin-bottom: 10px;
-}
-.load-more:hover {
-    text-decoration: none;
-    background: rgba(0, 0, 0, 0.1);
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
 }

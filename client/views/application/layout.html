@@ -1,12 +1,15 @@
 <template name="layout">
-  <div class="container">
-    <header class="navbar">
-      <div class="navbar-inner">
-        <a class="brand" href="{{pathFor 'locatorsList'}}">Nós Fiscais</a>
-      </div>
-    </header>
-    <div id="main" class="row-fluid">
-      {{> yield}}
+  <div id="main" class="container">
+    {{> yield}}
+
+    <div class="footer">
+      <p class="text-center" style="font-size: 14px;">
+        <a href="http://www.vocefiscal.org/">Você Fiscal</a> 2014 &copy; <a href="https://creativecommons.org/licenses/by/4.0/deed.pt_BR" target="_blank">CC-BY 4.0</a>
+        Doe Bitcoin: <code class="muted">1AqGXmn5MyuRopyRu7nCgUavs13yUHZAo6</code><br />
+        Visite <a href="https://comunidade.vocefiscal.org" target="_blank">nosso fórum de voluntários</a> &middot;
+        <a href="http://www.vocefiscal.org/faq">FAQ</a>
+      </p>
     </div>
-  </div>
+
+    </div> <!-- /container -->
 </template>
