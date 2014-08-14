@@ -2,21 +2,32 @@
   <div class="header">
     <ul class="nav nav-pills pull-right">
       <li><a href="/">Início</a></li>
-      <li><a href="/meta">Meta</a></li>
+      <li><a href="/faq">Como usar</a></li>
       <li><a href="/contato">Contato / Imprensa</a></li>
     </ul>
     <h3 class="muted"><a href="/">Nós Fiscais</a></h3>
   </div>
 
   <div class="body">
-    {{#if name}}
-      <h1><a href="{{ pathFor 'locatorPage' }}">{{name}}</a></h1>
+    {{#if fullName}}
+      <h1>
+        {{#if parentLocator}}
+          <a href="{{ pathFor 'locatorPage' slug=parentLocator.slug}}">{{parentShortName}}</a>
+        {{else}}
+          <a href="{{ pathFor 'home'}}">Brasil</a>
+        {{/if}}
+        /
+        <a href="{{ pathFor 'locatorPage' }}">{{shortName}}</a></h1>
+      <p>
+        Este é um espaço para discutir e coordenar a mobilização na sua região. Algumas dicas:
+      </p>
       <ul>
-        <li>Use este espaço para discutir e coordenar a mobilização na sua região</li>
+        <li>Apresente-se!</li>
         <li>Clique "Subscrever" para receber novas postagens por email</li>
         <li>Seja gentil</li>
         <li>Tome iniciativa</li>
-        <li>Divirta-se :)</li>
+        <li>Use Control-f (ou Command-f) para buscar. Veja subregiões no fim da página.</li>
+        <li>Ajude e peça ajuda :)</li>
       </ul>
 
 
@@ -34,6 +45,11 @@
       </script>
       <noscript>Por favor, habilite JavaScript para ver os <a href="http://disqus.com/?ref_noscript">comentários hospedados pelo Disqus.</a></noscript>
       <a href="http://disqus.com" class="dsq-brlink"><h2>Carregando postagens...</h2><br /><small>comentários hospedados pelo <span class="logo-disqus">Disqus</span></small></a>
+
+    {{#if childrenLocators}}
+      {{> locatorsList locators=childrenLocators}}
+    {{/if}}
+
     {{else}}
       {{> notFound}}
     {{/if}}
