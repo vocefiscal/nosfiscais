@@ -31,7 +31,7 @@ body {
 }
 
 /* Customize container */
-@media (min-width: 768px) {
+@media (min-width: 730px) {
   .container {
     max-width: 730px;
   }
@@ -41,7 +41,7 @@ body {
 }
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 730px) {
   /* Remove the padding we set earlier */
   .header,
   .footer {
