@@ -1,7 +1,25 @@
 <template name="disqus">
   <div id="my-disqus">
     <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    // FIXME: still broken. If you go to to a locator page, go back to home, then
+    // another locator page, you get: "Uncaught TypeError: Cannot read property 'appendChild' of null"
+    if (! window.DISQUS) {
+      /* * * CONFIGURATION VARIABLES: THIS CODE IS ONLY AN EXAMPLE * * */
+      var disqus_shortname = 'nosfiscais'; // Required - Replace example with your forum shortname
+      var disqus_identifier = '{{identifier}}';
+      var disqus_title = '{{title}}';
+      var disqus_url = window.location.href;
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    }
+</script>
     <noscript>Por favor, habilite JavaScript para ver os <a href="http://disqus.com/?ref_noscript">comentários hospedados pelo Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink"><h2>Carregando postagens...</h2><br /><small>comentários hospedados pelo <span class="logo-disqus">Disqus</span></small></a>
+    <a href='#' onclick='location.reload(true); return false;' class="dsq-brlink"><h2>Carregando postagens...</h2><p>(Se não estiver se mexendo, <strong>clique aqui</strong> para recarregar a página, por favor.)</p></a>
   </div>
 </template>
