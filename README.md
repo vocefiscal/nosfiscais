@@ -1,6 +1,6 @@
 # Nós Fiscais — Mobilizando para fiscalizar
 
-[**Nós fiscais**][1] é uma aplicação web do [Você Fiscal][2] em Meteor JS para facilitar a mobilização de cidadãos no dia das eleições de 2014 (5 de outubro).
+[**Nós Fiscais**][1] é uma aplicação web do [Você Fiscal][2] em Meteor JS para facilitar a mobilização de cidadãos no dia das eleições de 2014 (5 de outubro).
 
 O **Você Fiscal** é o projeto de fiscalização das eleições. O **vocefiscal-android** é o aplicativo Android para tirar fotos de Boletins de Urna. E o **Nós Fiscais** é um canal para as pessoas se encontrarem e unirem esforços para fazer a coisa acontecer localmente.
 
