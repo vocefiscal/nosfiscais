@@ -8,7 +8,6 @@ autopublish
 insecure
 accounts-base
 accounts-password
-accounts-guest
-accounts-ui-bootstrap-dropdown
+mrt:accounts-ui-bootstrap-dropdown@0.8.3
 bootstrap
-iron-router
+cmather:iron-router@0.8.2
