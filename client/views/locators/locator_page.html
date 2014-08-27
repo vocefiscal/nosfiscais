@@ -11,8 +11,8 @@
   <div class="body">
     {{#if fullName}}
       <h1>
-        {{#if parentLocator}}
-          <a href="{{ pathFor 'locatorPage' slug=parentLocator.slug}}">{{parentShortName}}</a>
+        {{#if parent}}
+          <a href="{{ pathFor 'locatorPage' slug=parent.slug}}">{{parent.shortName}}</a>
         {{else}}
           <a href="{{ pathFor 'home'}}">Brasil</a>
         {{/if}}
@@ -35,8 +35,8 @@
 
       {{> disqus title=fullName}}
 
-      {{#if childrenLocators}}
-        {{> locatorsList locators=childrenLocators}}
+      {{#if children}}
+        {{> locatorsList locators=children}}
       {{/if}}
 
     {{else}}
