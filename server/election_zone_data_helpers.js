@@ -105,14 +105,14 @@ function removeDiacritics (str) {
 // END removeDiacritics section
 
 Meteor.myConstants = {
-  slugPropertyOrder: ['regionCode', 'stateCode', 'city', 'number'],
-  slugNameOrder: ['region', 'state', 'city', 'number']
+  slugPropertyOrder: ['regionCode', 'stateCode', 'city', 'electionZone'],
+  slugNameOrder: ['region', 'state', 'city', 'electionZone']
 }
 
 function locatorNames(locator, nameFields) {
   var names = _(nameFields).
     map(function(nameField) {
-      if (nameField === 'number') {
+      if (nameField === 'electionZone') {
         return 'Zona ' + locator.slug.split('-').slice(-1)[0];
       } else {
        return locator[nameField];
@@ -148,7 +148,7 @@ Meteor.myFunctions = {
     return locator.regionCode.toLowerCase() + '/' +
       locator.stateCode.toLowerCase() + '/' +
       removeDiacritics(locator.city.toLowerCase()).replace(/\s+/g, '-') +
-      '/zona-' + locator.number;
+      '/zona-' + locator.electionZone;
   },
 
   fromLocatorSlug : function(locatorSlug) {
@@ -161,7 +161,7 @@ Meteor.myFunctions = {
         el.slug.indexOf(locatorSlug + '/') === 0;
     };
 
-    var firstMatch = _(locatorsData).find(isMatch);
+    var firstMatch = _(electionZoneData).find(isMatch);
 
     return locatorSubsetFromSlug(firstMatch, locatorSlug);
   },
@@ -178,7 +178,7 @@ Meteor.myFunctions = {
       return el.slug.split('/').slice(0, numNodes).join('/');
     }
 
-    var allMatches = _.chain(locatorsData).filter(isMatch).uniq(subLocator).
+    var allMatches = _.chain(electionZoneData).filter(isMatch).uniq(subLocator).
       value();
 
     var childrenLocators = _.chain(allMatches).map(function (el) {

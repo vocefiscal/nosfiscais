@@ -30,5 +30,5 @@ A terceira parte é fazer um esquema simples de criação de grupos, a la Foldin
 
 A licença é Apache v2.
 
-[1]: http://nosfiscais.vocefiscal.org
+[1]: http://somos.vocefiscal.org
 [2]: http://www.vocefiscal.org
