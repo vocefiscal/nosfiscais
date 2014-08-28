@@ -6,7 +6,7 @@ Locator = function (doc) {
 _.extend(Locator.prototype, {
   children: function () {
     return Locators.find({ _id: { $in: this.childrenIds } },
-     { sort: { slug: 1 } });
+     { sort: { slug: 1 } }).fetch();
   },
   parent: function () {
     return Locators.findOne(this.parentId);
