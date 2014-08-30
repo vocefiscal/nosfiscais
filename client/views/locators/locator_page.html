@@ -2,14 +2,26 @@
   <div class="body">
     {{#if fullName}}
       <h1>
-        {{#if parent}}
-          <a href="{{ pathFor 'locatorPage' slug=parent.slug}}">{{parent.shortName}}</a>
+        {{#if parentLocator}}
+          <a href="{{ pathFor 'locatorPage' slug=parentLocator.slug}}">{{parentLocator.shortName}}</a>
         {{else}}
           <a href="{{ pathFor 'home'}}">Brasil</a>
         {{/if}}
         /
         <a href="{{ pathFor 'locatorPage' }}">{{shortName}}</a>
+        ({{monitorsCount}})
       </h1>
+      {{#if isElectionZone}}
+        {{#if isAlreadyMonitored}}
+          <a href="#" class="unmonitorable btn btn-danger">Abandonar zona eleitoral</a>
+        {{else}}
+          <a href="#" class="monitorable btn btn-success">Adotar zona eleitoral</a>
+          {{#if currentUser}}
+          {{else}}
+            <small>Você precisa fazer login para adotar uma zona eleitoral</small>
+          {{/if}}
+        {{/if}}
+      {{/if}}
 
       <p>
         Este é um espaço para discutir e coordenar a mobilização na sua região. Algumas dicas:
