@@ -1,0 +1,20 @@
+<template name="header">
+  <div class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="/">Você Fiscal</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Exibir/esconder navegação</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+      </div>
+      <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="/faq">Como usar</a></li>
+              <li><a href="/contato">Contato</a></li>
+              {{> loginButtons }} <!-- here -->
+          </ul>
+      </div>
+  </div>
+</template>
