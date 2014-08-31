@@ -1,5 +1,5 @@
 Template.locatorPage.helpers({
-  isAlreadyMonitored: function() {
+  isAlreadyMonitored: function () {
     var user = Meteor.user();
     return user && _.include(user.monitored_locator_ids, this._id);
   }

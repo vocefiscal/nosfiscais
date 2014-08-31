@@ -15,6 +15,7 @@ cmather:iron-router@0.8.2
 ctl-helper@1.0.2
 ctl@1.0.0
 deps@1.0.1
+disqus@0.0.0
 ejson@1.0.0
 email@1.0.2
 follower-livedata@1.0.0
