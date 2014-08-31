@@ -12,15 +12,17 @@
         ({{monitorsCount}})
       </h1>
       {{#if isElectionZone}}
-        {{#if isAlreadyMonitored}}
-          <a href="#" class="unmonitorable btn btn-danger">Abandonar zona eleitoral</a>
-        {{else}}
-          <a href="#" class="monitorable btn btn-success">Adotar zona eleitoral</a>
-          {{#if currentUser}}
+        <div class="btn-monitor">
+          {{#if isAlreadyMonitored}}
+            <a href="#" class="unmonitorable btn btn-primary btn-block">Você adotou esta zona</a>
           {{else}}
-            <small>Você precisa fazer login para adotar uma zona eleitoral</small>
+            <a href="#" class="monitorable btn btn-success btn-block">Adotar zona eleitoral</a>
+            {{#if currentUser}}
+            {{else}}
+              <small>Você precisa fazer login para adotar uma zona eleitoral</small>
+            {{/if}}
           {{/if}}
-        {{/if}}
+        </div>
       {{/if}}
 
       <p>

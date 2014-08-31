@@ -13,5 +13,19 @@ Template.locatorPage.events({
   'click .unmonitorable': function(e) {
     e.preventDefault();
     Meteor.call('unmonitor', this._id);
+  },
+  'mouseenter .unmonitorable': function(e) {
+    console.log(e.target);
+    e.preventDefault();
+    el = $(e.target).removeClass().addClass("unmonitorable btn btn-danger btn-block");
+    console.log(el);
+    el.text("Parar de adotar");
+  },
+  'mouseleave .unmonitorable': function(e) {
+    console.log(e.target);
+    e.preventDefault();
+    el = $(e.target).removeClass().addClass("unmonitorable btn btn-primary btn-block");
+    console.log(el);
+    el.text("Você adotou esta zona");
   }
 });
