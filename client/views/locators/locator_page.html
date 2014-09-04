@@ -1,4 +1,10 @@
 <template name="locatorPage">
+  {{#contentFor "aside"}}
+    {{#if children.length}}
+      {{> locatorsList locators=children}}
+    {{/if}}
+  {{/contentFor}}
+
   <div class="body">
     {{#if fullName}}
       <h1>
@@ -39,11 +45,6 @@
       </ul>
 
       {{> disqus}}
-
-      {{#if children.length}}
-        {{> locatorsList locators=children}}
-      {{/if}}
-
     {{else}}
       {{> notFound}}
     {{/if}}
