@@ -1,15 +1,14 @@
-<template name="layout">
+<template name="locatorLayout">
   <div class="header">
     {{> header}}
   </div>
   <div class="container">
     <div id="main" class="row-fluid">
-      <div class="col-md-3">
-      </div>
       <div id="content" class="col-md-7">
         {{> yield}}
       </div>
-      <div class="col-md-3">
+      <div id="aside" class="col-md-5">
+        {{> yield "aside"}}
       </div>
     </div>
   </div>
