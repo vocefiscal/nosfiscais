@@ -1,7 +1,7 @@
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 800px;
+    max-width: 918px;
   }
 }
 
@@ -15,7 +15,7 @@ body {
 }
 
 .breadcrumb, .breadcrumb li a {
-  margin-bottom: 0px;
+  margin-bottom: 5px;
   color: #929292;
 }
 
@@ -23,8 +23,14 @@ body {
   margin-top: 0px;
 }
 
+.btn-block {
+  height: 100%;
+  padding-top: 8px;
+}
+
 .btn-monitor {
   width: 180px;
+  height: 39px;
 }
 
 /* Sticky footer styles
