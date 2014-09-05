@@ -1,0 +1,15 @@
+<template name="monitorElectionZoneButton">
+  {{#if isElectionZone}}
+    <div class="btn-monitor">
+      {{#if isAlreadyMonitored}}
+        <a href="{{ pathFor 'locatorPage' }}" class="unmonitorable btn btn-primary btn-block">Você adotou esta zona</a>
+      {{else}}
+        <a href="{{ pathFor 'locatorPage' }}" class="monitorable btn btn-success btn-block">Adotar zona eleitoral</a>
+        {{#if currentUser}}
+        {{else}}
+          <small>Você precisa fazer login para adotar uma zona eleitoral</small>
+        {{/if}}
+      {{/if}}
+    </div>
+  {{/if}}
+</template>

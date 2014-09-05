@@ -1,18 +1,13 @@
-Template.locatorPage.helpers({
-  isAlreadyMonitored: function () {
-    var user = Meteor.user();
-    return user && _.include(user.monitored_locator_ids, this._id);
-  }
-});
-
 Template.locatorPage.events({
   'click .monitorable': function(e) {
     e.preventDefault();
-    Meteor.call('monitor', this._id);
+    var currentLocator = this;
+    Meteor.call('monitor', currentLocator._id);
   },
   'click .unmonitorable': function(e) {
     e.preventDefault();
-    Meteor.call('unmonitor', this._id);
+    var currentLocator = this;
+    Meteor.call('unmonitor', currentLocator._id);
   },
   'mouseenter .unmonitorable': function(e) {
     e.preventDefault();

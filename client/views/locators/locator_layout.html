@@ -2,18 +2,5 @@
   <div class="header">
     {{> header}}
   </div>
-  <div class="container">
-    <div id="main" class="row row-fluid">
-      {{> yield "breadcrumbs"}}
-      <div id="content" class="column col-md-7">
-        {{> yield}}
-      </div>
-      <div id="aside" class="column col-md-5">
-        {{> yield "aside"}}
-      </div>
-    </div>
-  </div>
-  <div class="footer">
-    {{> footer}}
-  </div>
+  {{> yield}}
 </template>

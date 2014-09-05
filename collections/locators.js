@@ -47,6 +47,11 @@ _.extend(Locator.prototype, {
   isElectionZone: function () {
     return this.electionZone !== undefined;
   },
+  isAlreadyMonitored: function () {
+    var self = this;
+    var user = Meteor.user();
+    return user && _.include(user.monitored_locator_ids, self._id);
+  },
   monitorsCount: function () { return this.monitors_count || 0; }
 });
 

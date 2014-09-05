@@ -1,63 +1,58 @@
 <template name="locatorPage">
-  {{#contentFor "aside"}}
-    {{#if isElectionZone}}
-      <div class="btn-monitor">
-        {{#if isAlreadyMonitored}}
-          <a href="#" class="unmonitorable btn btn-primary btn-block">Você adotou esta zona</a>
-        {{else}}
-          <a href="#" class="monitorable btn btn-success btn-block">Adotar zona eleitoral</a>
-          {{#if currentUser}}
-          {{else}}
-            <small>Você precisa fazer login para adotar uma zona eleitoral</small>
-          {{/if}}
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{#if children.length}}
-      {{> locatorsList locators=children}}
-    {{/if}}
-  {{/contentFor}}
-
-  {{#contentFor "breadcrumbs"}}
-    <ul class="breadcrumb">
-      {{#each allAncestors}}
-        <li>
-          <a href="{{ pathFor 'locatorPage' slug=slug }}">
-            {{lastSlugSegment}}
-          </a>
-        </li>
-      {{/each}}
-    </ul>
-  {{/contentFor}}
-
-  <div class="body">
-    {{#if fullName}}
-      <h1 id="locator-title">
-        {{#if isElectionZone}}
-          <a href="{{ pathFor 'locatorPage' slug=parentLocator.slug }}">{{parentLocator.shortNameLowerCase}}</a>
-          /
-        {{/if}}
-        <a href="{{ pathFor 'locatorPage' }}">{{shortNameLowerCase}}</a>
-        ({{monitorsCount}})
-      </h1>
-
-      <p>
-        Este é um espaço para discutir e coordenar a mobilização na sua região. Algumas dicas:
-      </p>
-
-      <ul>
-        <li>Apresente-se!{{#if isElectionZone}} <strong>Em que seção você vota?</strong>{{/if}}</li>
-        <li>Clique "Assinar feed" para receber novas postagens por email</li>
-        <li>Seja gentil</li>
-        <li>Tome iniciativa</li>
-        <li>Use Control-f (ou Command-f) para buscar. Veja subregiões no fim da página.</li>
-        <li>Ajude e peça ajuda :)</li>
+  <div class="container">
+    <div id="main" class="row row-fluid">
+      <ul class="breadcrumb">
+        {{#each allAncestors}}
+          <li>
+            <a href="{{ pathFor 'locatorPage' slug=slug }}">
+              {{lastSlugSegment}}
+            </a>
+          </li>
+        {{/each}}
       </ul>
 
-      {{> disqus}}
-    {{else}}
-      {{> notFound}}
-    {{/if}}
+      <div id="content" class="column col-md-7">
+        <div class="body">
+          {{#if fullName}}
+            <h1 id="locator-title">
+              {{#if isElectionZone}}
+                <a href="{{ pathFor 'locatorPage' slug=parentLocator.slug }}">{{parentLocator.shortNameLowerCase}}</a>
+                /
+              {{/if}}
+              <a href="{{ pathFor 'locatorPage' }}">{{shortNameLowerCase}}</a>
+              ({{monitorsCount}})
+            </h1>
+
+            <p>
+              Este é um espaço para discutir e coordenar a mobilização na sua região. Algumas dicas:
+            </p>
+
+            <ul>
+              <li>Apresente-se!{{#if isElectionZone}} <strong>Em que seção você vota?</strong>{{/if}}</li>
+              <li>Clique "Assinar feed" para receber novas postagens por email</li>
+              <li>Seja gentil</li>
+              <li>Tome iniciativa</li>
+              <li>Use Control-f (ou Command-f) para buscar. Veja subregiões no fim da página.</li>
+              <li>Ajude e peça ajuda :)</li>
+            </ul>
+
+            {{> disqus}}
+          {{else}}
+            {{> notFound}}
+          {{/if}}
+        </div>
+      </div>
+
+      <div id="aside" class="column col-md-5">
+        {{> monitorElectionZoneButton}}
+
+        {{#if children.length}}
+          {{> locatorsList locators=children}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    {{> footer}}
   </div>
 </template>
