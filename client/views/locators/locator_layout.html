@@ -3,11 +3,12 @@
     {{> header}}
   </div>
   <div class="container">
-    <div id="main" class="row-fluid">
-      <div id="content" class="col-md-7">
+    <div id="main" class="row row-fluid">
+      {{> yield "breadcrumbs"}}
+      <div id="content" class="column col-md-7">
         {{> yield}}
       </div>
-      <div id="aside" class="col-md-5">
+      <div id="aside" class="column col-md-5">
         {{> yield "aside"}}
       </div>
     </div>

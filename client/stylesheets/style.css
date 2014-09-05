@@ -1,3 +1,21 @@
+.row {
+  background-color: #fff;
+  padding: 10px;
+}
+
+body {
+  background-color: #ddd;
+}
+
+.breadcrumb, .breadcrumb li a {
+  margin-bottom: 0px;
+  color: #929292;
+}
+
+#locator-title {
+  margin-top: 0px;
+}
+
 .btn-monitor {
   width: 180px;
 }

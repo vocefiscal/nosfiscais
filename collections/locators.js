@@ -1,3 +1,17 @@
+// Take a slug like 'se/sp/campinas' and return an array with
+// ['se', 'se/sp', 'se/sp/campinas']
+var allPrefixSlugsFrom = function (slug) {
+  var initialContext = { prefixes: [], lastPath: null };
+  return _(slug.split('/')).reduce(
+    function (context, segment) {
+      var newPath = context.lastPath ?
+        context.lastPath + '/' + segment : segment;
+      context.lastPath = newPath;
+      context.prefixes.push(newPath);
+      return context;
+    }, initialContext).prefixes;
+};
+
 // A Locator class that takes a document in its constructor
 Locator = function (doc) {
   _.extend(this, doc);
@@ -11,6 +25,25 @@ _.extend(Locator.prototype, {
   parentLocator: function () {
     return Locators.findOne(this.parentId);
   },
+  // The 'all' prefix is to emphasize that it's all ancestors including
+  // the callee itself
+  allAncestorSlugs: function () {
+    var self = this;
+    return allPrefixSlugsFrom(self.slug);
+  },
+  allAncestors: function () {
+    var self = this;
+    return Locators.find({ slug: { $in: self.allAncestorSlugs() } },
+     { sort: { slug: 1 } }).fetch();
+  },
+  lastSlugSegment: function () {
+    var self = this;
+    return self.slug.split('/').slice(-1)[0];
+  },
+  shortNameLowerCase: function () {
+    var self = this;
+    return self.shortName.toLowerCase();
+  },
   isElectionZone: function () {
     return this.electionZone !== undefined;
   },
@@ -21,6 +54,10 @@ _.extend(Locator.prototype, {
 Locators = new Meteor.Collection("locators", {
   transform: function (doc) { return new Locator(doc); }
 });
+
+// FIXME: when there's internet again, see if this is the idiomatic way to
+// define collection helpers
+Locators.allPrefixSlugsFrom = allPrefixSlugsFrom;
 
 Meteor.methods({
   monitor: function(locatorId) {

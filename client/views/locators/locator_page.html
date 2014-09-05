@@ -1,35 +1,46 @@
 <template name="locatorPage">
   {{#contentFor "aside"}}
+    {{#if isElectionZone}}
+      <div class="btn-monitor">
+        {{#if isAlreadyMonitored}}
+          <a href="#" class="unmonitorable btn btn-primary btn-block">Você adotou esta zona</a>
+        {{else}}
+          <a href="#" class="monitorable btn btn-success btn-block">Adotar zona eleitoral</a>
+          {{#if currentUser}}
+          {{else}}
+            <small>Você precisa fazer login para adotar uma zona eleitoral</small>
+          {{/if}}
+        {{/if}}
+      </div>
+    {{/if}}
+
     {{#if children.length}}
       {{> locatorsList locators=children}}
     {{/if}}
   {{/contentFor}}
 
+  {{#contentFor "breadcrumbs"}}
+    <ul class="breadcrumb">
+      {{#each allAncestors}}
+        <li>
+          <a href="{{ pathFor 'locatorPage' slug=slug }}">
+            {{lastSlugSegment}}
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  {{/contentFor}}
+
   <div class="body">
     {{#if fullName}}
-      <h1>
-        {{#if parentLocator}}
-          <a href="{{ pathFor 'locatorPage' slug=parentLocator.slug}}">{{parentLocator.shortName}}</a>
-        {{else}}
-          <a href="{{ pathFor 'home'}}">Brasil</a>
+      <h1 id="locator-title">
+        {{#if isElectionZone}}
+          <a href="{{ pathFor 'locatorPage' slug=parentLocator.slug }}">{{parentLocator.shortNameLowerCase}}</a>
+          /
         {{/if}}
-        /
-        <a href="{{ pathFor 'locatorPage' }}">{{shortName}}</a>
+        <a href="{{ pathFor 'locatorPage' }}">{{shortNameLowerCase}}</a>
         ({{monitorsCount}})
       </h1>
-      {{#if isElectionZone}}
-        <div class="btn-monitor">
-          {{#if isAlreadyMonitored}}
-            <a href="#" class="unmonitorable btn btn-primary btn-block">Você adotou esta zona</a>
-          {{else}}
-            <a href="#" class="monitorable btn btn-success btn-block">Adotar zona eleitoral</a>
-            {{#if currentUser}}
-            {{else}}
-              <small>Você precisa fazer login para adotar uma zona eleitoral</small>
-            {{/if}}
-          {{/if}}
-        </div>
-      {{/if}}
 
       <p>
         Este é um espaço para discutir e coordenar a mobilização na sua região. Algumas dicas:
