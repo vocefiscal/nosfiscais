@@ -22,6 +22,7 @@ geojson-utils@1.0.0
 handlebars@1.0.0
 html-tools@1.0.0
 htmljs@1.0.0
+http@1.0.3
 ian:accounts-ui-bootstrap-3@1.1.7
 ian:bootstrap-3-theme@1.0.1
 ian:bootstrap-3@1.0.2
@@ -32,6 +33,8 @@ livedata@1.0.7
 localstorage@1.0.0
 logging@1.0.2
 meteor@1.0.2
+meteorhacks:kadira-binary-deps@1.0.1
+meteorhacks:kadira@2.7.5
 minifiers@1.0.2
 minimongo@1.0.1
 mongo-livedata@1.0.3
