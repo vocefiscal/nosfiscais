@@ -1,15 +1,42 @@
 <template name="monitorElectionZoneButton">
-  {{#if isElectionZone}}
-    <div class="btn-monitor">
-      {{#if isAlreadyMonitored}}
-        <a href="{{ pathFor 'locatorPage' }}" class="unmonitorable btn btn-primary btn-block">Você adotou esta zona</a>
-      {{else}}
-        <a href="{{ pathFor 'locatorPage' }}" class="monitorable btn btn-success btn-block">Adotar zona eleitoral</a>
-        {{#if currentUser}}
-        {{else}}
-          <small>Você precisa fazer login para adotar uma zona eleitoral</small>
+  <h4 style="margin-bottom: 1px;">Adote sua zona eleitoral:</h4>
+  <ul class="locators list-group">
+    <li class="list-group-item {{#if hasState}}list-group-item-success text-muted{{/if}}">
+      <span>Escolha um estado
+        {{#if hasState}}
+          <span class="label label-default pull-right">
+            <span class="glyphicon glyphicon-ok"></span>
+          </span>
         {{/if}}
-      {{/if}}
-    </div>
-  {{/if}}
+      </span>
+    </li>
+    <li class="list-group-item {{#if hasCity}}list-group-item-success text-muted{{/if}}">
+      <span>Escolha uma cidade
+        {{#if hasCity}}
+          <span class="label label-default pull-right">
+            <span class="glyphicon glyphicon-ok"></span>
+          </span>
+        {{/if}}
+      </span>
+    </li>
+    {{#if isElectionZone}}
+      <li class="list-group-item list-group-item-btn-monitor">
+        <div class="btn-monitor">
+          {{#if isAlreadyMonitored}}
+            <a href="{{ pathFor 'locatorPage' }}" class="unmonitorable btn btn-primary btn-block">Você adotou esta zona</a>
+          {{else}}
+            <a href="{{ pathFor 'locatorPage' }}" class="monitorable btn btn-success btn-block">Adotar zona eleitoral</a>
+            {{#if currentUser}}
+            {{else}}
+              <small>Você precisa fazer login para adotar uma zona eleitoral</small>
+            {{/if}}
+          {{/if}}
+        </div>
+      </li>
+    {{else}}
+      <li class="list-group-item">
+        <span>Adote zona eleitoral</span>
+      </li>
+    {{/if}}
+  </ul>
 </template>

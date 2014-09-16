@@ -7,13 +7,14 @@
       </div>
 
       <div id="content" class="column col-md-9">
+        <h2 style="margin-top: 10px; margin-bottom: 6px;">Escolha seu estado</h2>
         {{#if locators.count}}
           {{> locatorsList this}}
         {{/if}}
       </div>
 
       <div id="aside" class="column col-md-3">
-
+        {{> monitorElectionZoneButton}}
       </div>
     </div>
   </div>

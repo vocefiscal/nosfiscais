@@ -29,8 +29,12 @@ body {
 }
 
 .btn-monitor {
-  width: 180px;
+  width: 193px;
   height: 39px;
+}
+
+.list-group-item-btn-monitor {
+  padding: 0px;
 }
 
 /* Sticky footer styles
