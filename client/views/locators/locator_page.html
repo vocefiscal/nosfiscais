@@ -28,20 +28,10 @@
               ({{monitorsCount}})
             </h1>
 
-            <p>
-              Este é um espaço para discutir e coordenar a mobilização na sua região. Algumas dicas:
-            </p>
+            {{#if children.length}}
+              {{> locatorsList locators=children}}
+            {{/if}}
 
-            <ul>
-              <li>Apresente-se!{{#if isElectionZone}} <strong>Em que seção você vota?</strong>{{/if}}</li>
-              <li>Clique "Assinar feed" para receber novas postagens por email</li>
-              <li>Seja gentil</li>
-              <li>Tome iniciativa</li>
-              <li>Use Control-f (ou Command-f) para buscar. Veja subregiões no fim da página.</li>
-              <li>Ajude e peça ajuda :)</li>
-            </ul>
-
-            {{> disqus}}
           {{else}}
             {{> notFound}}
           {{/if}}
@@ -50,10 +40,6 @@
 
       <div id="aside" class="column col-md-3">
         {{> monitorElectionZoneButton}}
-
-        {{#if children.length}}
-          {{> locatorsList locators=children}}
-        {{/if}}
       </div>
     </div>
   </div>
