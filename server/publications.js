@@ -1,16 +1,16 @@
 Meteor.publish('locatorsFromSlugs', function(slugs) {
   return Locators.find({ slug: { $in: slugs } },
-    { sort: { slug: 1 } });
+    { sort: { shortName: 1 } });
 });
 
 Meteor.publish('locatorsFromSlugRegExp', function(strRegExp) {
   return Locators.find({ slug: { $regex: strRegExp } },
-    { sort: { slug: 1 } });
+    { sort: { shortName: 1 } });
 });
 
 Meteor.publish('locators', function(ids) {
   return Locators.find({ _id: { $in: ids } },
-    { sort: { slug: 1 } });
+    { sort: { shortName: 1 } });
 });
 
 Meteor.publish("userData", function () {
