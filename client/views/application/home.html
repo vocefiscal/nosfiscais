@@ -6,15 +6,16 @@
         <p class="lead">Fiscalize a eleição, garanta seu voto</p>
       </div>
 
-      <div id="content" class="column col-md-9">
+      <div id="content" class="column col-md-8">
         <h2 style="margin-top: 10px; margin-bottom: 6px;">Escolha seu estado</h2>
         {{#if locators.count}}
           {{> locatorsList this}}
         {{/if}}
       </div>
 
-      <div id="aside" class="column col-md-3">
+      <div id="aside" class="column col-md-4">
         {{> monitorElectionZoneButton}}
+        {{> miniFaq}}
       </div>
     </div>
   </div>
