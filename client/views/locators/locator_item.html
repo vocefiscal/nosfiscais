@@ -1,7 +1,8 @@
 <template name="locatorItem">
-  <div class="locator">
-    <div class="locator-content">
-      <h3><a href="{{ pathFor 'locatorPage' }}">{{shortNameLowerCase}}</a> ({{monitorsCount}})</h3>
-    </div>
-  </div>
+  <a href="{{ pathFor 'locatorPage' }}" class="list-group-item clearfix" style="font-size: 25px;">
+    <span>
+      {{shortNameLowerCase}}
+    </span>
+    <span class="badge pull-right" style="margin-top: 0.8em;">{{#if monitorsCount}}{{monitorsCount}}{{/if}}</span>
+  </a>
 </template>
