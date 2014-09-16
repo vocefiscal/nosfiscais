@@ -1,12 +1,23 @@
 <template name="contato">
-  <div class="body">
-    <h1>Contato / Imprensa</h1>
-    <ul>
-      <li>Twitter: <a href="https://twitter.com/vocefiscal">https://twitter.com/vocefiscal</a></li>
-      <li>Facebook: <a href="https://facebook.com/vocefiscal">https://facebook.com/vocefiscal</a></li>
-      <li>Fórum: <a href="https://comunidade.vocefiscal.org">https://comunidade.vocefiscal.org</a></li>
-      <li>Email: <a href="mailto:contato@vocefiscal.org">contato@vocefiscal.org</a></li>
-      <li>Media kit: <a href="http://bit.ly/vocefiscal-mediakit">http://bit.ly/vocefiscal-mediakit</a></li>
-    </ul>
+  <div class="container">
+    <div id="main" class="row row-fluid">
+      <div class="column col-md-1"></div>
+
+      <div id="content" class="column col-md-9">
+        <h1>Contato / Imprensa</h1>
+        <ul>
+          <li>Twitter: <a href="https://twitter.com/vocefiscal">https://twitter.com/vocefiscal</a></li>
+          <li>Facebook: <a href="https://facebook.com/vocefiscal">https://facebook.com/vocefiscal</a></li>
+          <li>Fórum: <a href="https://comunidade.vocefiscal.org">https://comunidade.vocefiscal.org</a></li>
+          <li>Email: <a href="mailto:contato@vocefiscal.org">contato@vocefiscal.org</a></li>
+          <li>Media kit: <a href="http://bit.ly/vocefiscal-mediakit">http://bit.ly/vocefiscal-mediakit</a></li>
+        </ul>
+      </div>
+
+      <div id="aside" class="column col-md-2"></div>
+    </div>
+  </div>
+  <div class="footer">
+    {{> footer}}
   </div>
 </template>

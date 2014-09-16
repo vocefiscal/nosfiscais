@@ -1,6 +1,11 @@
 <template name="locatorPage">
   <div class="container">
     <div id="main" class="row row-fluid">
+      <div class="well-sm text-center">
+        <h1>Adote uma zona eleitoral</h1>
+        <p class="lead">Fiscalize a eleição, garanta seu voto</p>
+      </div>
+
       <ul class="breadcrumb">
         {{#each allAncestors}}
           <li>
@@ -11,7 +16,7 @@
         {{/each}}
       </ul>
 
-      <div id="content" class="column col-md-8">
+      <div id="content" class="column col-md-9">
         <div class="body">
           {{#if fullName}}
             <h1 id="locator-title">
@@ -20,36 +25,26 @@
                 /
               {{/if}}
               <a href="{{ pathFor 'locatorPage' }}">{{shortNameLowerCase}}</a>
-              ({{monitorsCount}})
+              <span class="label label-default">
+                {{monitorsCount}}
+                <span class="glyphicon glyphicon-heart"></span>
+              </span>
             </h1>
 
-            <p>
-              Este é um espaço para discutir e coordenar a mobilização na sua região. Algumas dicas:
-            </p>
+            {{#if children.count}}
+              {{> locatorsList locators=children}}
+            {{/if}}
 
-            <ul>
-              <li>Apresente-se!{{#if isElectionZone}} <strong>Em que seção você vota?</strong>{{/if}}</li>
-              <li>Clique "Assinar feed" para receber novas postagens por email</li>
-              <li>Seja gentil</li>
-              <li>Tome iniciativa</li>
-              <li>Use Control-f (ou Command-f) para buscar. Veja subregiões no fim da página.</li>
-              <li>Ajude e peça ajuda :)</li>
-            </ul>
-
-            {{> disqus}}
           {{else}}
             {{> notFound}}
           {{/if}}
         </div>
       </div>
 
-      <div id="aside" class="column col-md-4">
+      <div id="aside" class="column col-md-3">
         {{> monitorElectionZoneButton}}
-
-        {{#if children.length}}
-          {{> locatorsList locators=children}}
-        {{/if}}
       </div>
+
     </div>
   </div>
   <div class="footer">

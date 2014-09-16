@@ -12,6 +12,8 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Início</a></li>
+            {{> monitoredLocatorNavBar}}
             <li><a href="/faq">Como usar</a></li>
             <li><a href="/contato">Contato</a></li>
             {{> loginButtons }} <!-- here -->
@@ -19,4 +21,16 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="monitoredLocatorNavBar">
+  {{#if monitoredLocator}}
+    {{#with monitoredLocator}}
+      <li>
+        <a href="{{ pathFor 'locatorPage' }}">
+          Sua zona eleitoral
+        </a>
+      </li>
+    {{/with}}
+  {{/if}}
 </template>
