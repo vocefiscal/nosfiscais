@@ -2,7 +2,13 @@ Template.locatorPage.events({
   'click .monitorable': function(e) {
     e.preventDefault();
     var currentLocator = this;
-    Meteor.call('monitor', currentLocator._id);
+    if (Meteor.userId()) {
+      Meteor.call('monitor', currentLocator._id);
+    } else {
+      $('.needs-login, #login-dropdown-list').fadeOut(300).fadeIn(300).
+        fadeOut(300).fadeIn(300).fadeOut(300).fadeIn(300);
+      return false;
+    }
   },
   'click .unmonitorable': function(e) {
     e.preventDefault();
