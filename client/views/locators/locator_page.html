@@ -25,7 +25,10 @@
                 /
               {{/if}}
               <a href="{{ pathFor 'locatorPage' }}">{{shortNameLowerCase}}</a>
-              ({{monitorsCount}})
+              <span class="label label-default">
+                {{monitorsCount}}
+                <span class="glyphicon glyphicon-heart"></span>
+              </span>
             </h1>
 
             {{#if children.length}}

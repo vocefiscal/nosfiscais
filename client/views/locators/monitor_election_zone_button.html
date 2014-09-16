@@ -1,6 +1,6 @@
 <template name="monitorElectionZoneButton">
   <h4 style="margin-bottom: 1px;">Adote sua zona eleitoral:</h4>
-  <ul class="locators list-group">
+  <ul class="locators list-group" style="margin-bottom: 50px;">
     <li class="list-group-item {{#if hasState}}list-group-item-success text-muted{{/if}}">
       <span>Escolha um estado
         {{#if hasState}}
@@ -23,12 +23,12 @@
       <li class="list-group-item list-group-item-btn-monitor">
         <div class="btn-monitor">
           {{#if isAlreadyMonitored}}
-            <a href="{{ pathFor 'locatorPage' }}" class="unmonitorable btn btn-primary btn-block">Você adotou esta zona</a>
+            <a href="{{ pathFor 'locatorPage' }}" class="unmonitorable btn btn-success btn-block">Você adotou esta zona <span class="glyphicon glyphicon-heart pull-right"></span></a>
           {{else}}
-            <a href="{{ pathFor 'locatorPage' }}" class="monitorable btn btn-success btn-block">Adotar zona eleitoral</a>
+            <a href="{{ pathFor 'locatorPage' }}" class="monitorable btn btn-primary btn-block">Adotar zona eleitoral <span class="glyphicon glyphicon-heart pull-right"></span></a>
             {{#if currentUser}}
             {{else}}
-              <small>Você precisa fazer login para adotar uma zona eleitoral</small>
+              <p class="needs-login"><small>Você precisa fazer login para adotar uma zona eleitoral</small></p>
             {{/if}}
           {{/if}}
         </div>

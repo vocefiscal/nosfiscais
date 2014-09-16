@@ -13,12 +13,12 @@ Template.locatorPage.events({
     e.preventDefault();
     $(e.target).removeClass().
       addClass("unmonitorable btn btn-danger btn-block").
-      text("Parar de adotar");
+      html('Parar de adotar  <span class="glyphicon glyphicon-remove-circle pull-right"></span>');
   },
   'mouseleave .unmonitorable': function(e) {
     e.preventDefault();
     $(e.target).removeClass().
-    addClass("unmonitorable btn btn-primary btn-block").
-    text("Você adotou esta zona");
+    addClass("unmonitorable btn btn-success btn-block").
+    html('Você adotou esta zona  <span class="glyphicon glyphicon-heart pull-right"></span>');
   }
 });
