@@ -1,21 +1,31 @@
 <template name="monitorElectionZoneButton">
-  <h4 style="margin-bottom: 1px;">Adote sua zona eleitoral:</h4>
-  <ul class="locators list-group" style="margin-bottom: 50px;">
+  <h4 style="margin-top: 15px; margin-bottom: 15px;">Adote sua zona eleitoral:</h4>
+  <ul class="locators list-group" style="margin-bottom: 30px;">
     <li class="list-group-item {{#if hasState}}list-group-item-success text-muted{{/if}}">
-      <span>Escolha um estado
+      <span>
         {{#if hasState}}
+          Escolha um estado
           <span class="label label-default pull-right">
             <span class="glyphicon glyphicon-ok"></span>
           </span>
+        {{else}}
+          <strong>Escolha um estado</strong>
         {{/if}}
       </span>
     </li>
     <li class="list-group-item {{#if hasCity}}list-group-item-success text-muted{{/if}}">
-      <span>Escolha uma cidade
+      <span>
         {{#if hasCity}}
+          Escolha uma cidade
           <span class="label label-default pull-right">
             <span class="glyphicon glyphicon-ok"></span>
           </span>
+        {{else}}
+          {{#if hasState}}
+            <strong>Escolha uma cidade</strong>
+          {{else}}
+            Escolha uma cidade
+          {{/if}}
         {{/if}}
       </span>
     </li>
@@ -39,7 +49,13 @@
       </li>
     {{else}}
       <li class="list-group-item">
-        <span>Escolha zona eleitoral</span>
+        <span>
+          {{#if hasCity}}
+            <strong>Escolha zona eleitoral</strong>
+          {{else}}
+            Escolha zona eleitoral
+          {{/if}}
+        </span>
       </li>
     {{/if}}
   </ul>
