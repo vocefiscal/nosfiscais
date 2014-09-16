@@ -3,6 +3,11 @@ Meteor.publish('locatorsFromSlugs', function(slugs) {
     { sort: { slug: 1 } });
 });
 
+Meteor.publish('locatorsFromSlugRegExp', function(strRegExp) {
+  return Locators.find({ slug: { $regex: strRegExp } },
+    { sort: { slug: 1 } });
+});
+
 Meteor.publish('locators', function(ids) {
   return Locators.find({ _id: { $in: ids } },
     { sort: { slug: 1 } });

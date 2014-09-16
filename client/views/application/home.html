@@ -1,10 +1,18 @@
 <template name="home">
-  <div class="body">
-    <p>Escolha a região abaixo para coordenar esforços com pessoas da mesma área.</p>
-    <div class="locators">
-      {{#each locators}}
-        {{> locatorItem}}
-      {{/each}}
+  <div class="container">
+    <div id="main" class="row row-fluid">
+      <div id="content" class="column col-md-8">
+        {{#if locators.count}}
+          {{> locatorsList this}}
+        {{/if}}
+      </div>
+
+      <div id="aside" class="column col-md-4">
+
+      </div>
     </div>
+  </div>
+  <div class="footer">
+    {{> footer}}
   </div>
 </template>
