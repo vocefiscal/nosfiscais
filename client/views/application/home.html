@@ -1,6 +1,11 @@
 <template name="home">
   <div class="container">
     <div id="main" class="row row-fluid">
+      <div class="jumbotron text-center">
+        <h1>Adote uma zona eleitoral</h1>
+        <p class="lead">Fiscalize a eleição, garanta seu voto</p>
+      </div>
+
       <div id="content" class="column col-md-8">
         {{#if locators.count}}
           {{> locatorsList this}}
