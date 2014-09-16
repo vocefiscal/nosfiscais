@@ -25,7 +25,11 @@
           {{#if isAlreadyMonitored}}
             <a href="{{ pathFor 'locatorPage' }}" class="unmonitorable btn btn-success btn-block">Você adotou esta zona <span class="glyphicon glyphicon-heart pull-right"></span></a>
           {{else}}
-            <a href="{{ pathFor 'locatorPage' }}" class="monitorable btn btn-primary btn-block">Adotar zona eleitoral <span class="glyphicon glyphicon-heart pull-right"></span></a>
+            {{#if monitoringDifferentLocator}}
+              <a href="#" class="btn btn-primary btn-block disabled">Você já adotou outra <span class="glyphicon glyphicon-ban-circle pull-right"></span></a>
+            {{else}}
+              <a href="{{ pathFor 'locatorPage' }}" class="monitorable btn btn-primary btn-block">Adotar zona eleitoral <span class="glyphicon glyphicon-heart pull-right"></span></a>
+            {{/if}}
             {{#if currentUser}}
             {{else}}
               <p class="needs-login"><small>Você precisa fazer login para adotar uma zona eleitoral</small></p>
