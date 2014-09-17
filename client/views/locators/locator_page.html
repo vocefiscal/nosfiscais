@@ -31,6 +31,32 @@
               </span>
             </h1>
 
+            {{#if isElectionZone}}
+              {{#if isAlreadyMonitored}}
+              <div class="well">
+                <h1>
+                  <span class="glyphicon glyphicon-heart"></span>
+                  Parabéns!
+                </h1>
+                <p>
+                  Você é uma pessoa incrível :) <br />Obrigado por se comprometer com a transparência eleitoral!
+                </p>
+              </div>
+
+              {{else}}
+              <div class="well">
+                <h1>
+                  <span class="glyphicon glyphicon-question-sign"></span>
+                  Esta é a sua zona eleitoral?
+                </h1>
+                <p>
+                  Adote-a clicando no botão à direita
+                  <span class="glyphicon glyphicon-arrow-right pull-right"></span>
+                </p>
+              </div>
+              {{/if}}
+            {{/if}}
+
             {{#if children.count}}
               {{> locatorsList locators=children}}
             {{/if}}
