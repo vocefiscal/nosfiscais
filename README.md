@@ -17,7 +17,7 @@ A quarta parte (que não sei se vai dar tempo de fazer) é fazer um esquema simp
 
 ## Como contribuir
 
-* Ache uma issue que te interessa ou crie uma.
+* Ache uma issue que te interesse ou crie uma.
 * Apresente-se pra gente conversar sobre o que vc está pensando em implementar e como.
 * Mande pull requests :)
 
