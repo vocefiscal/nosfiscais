@@ -4,27 +4,27 @@
     <li class="list-group-item {{#if hasState}}list-group-item-success text-muted{{/if}}">
       <span>
         {{#if hasState}}
-          Escolha um estado
+          Escolha o estado
           <span class="label label-default pull-right">
             <span class="glyphicon glyphicon-ok"></span>
           </span>
         {{else}}
-          <strong>Escolha um estado</strong>
+          <strong> ⃪ Escolha o estado</strong>
         {{/if}}
       </span>
     </li>
     <li class="list-group-item {{#if hasCity}}list-group-item-success text-muted{{/if}}">
       <span>
         {{#if hasCity}}
-          Escolha uma cidade
+          Escolha a cidade
           <span class="label label-default pull-right">
             <span class="glyphicon glyphicon-ok"></span>
           </span>
         {{else}}
           {{#if hasState}}
-            <strong>Escolha uma cidade</strong>
+            <strong>⃪ Escolha a cidade</strong>
           {{else}}
-            Escolha uma cidade
+            Escolha a cidade
           {{/if}}
         {{/if}}
       </span>
@@ -52,9 +52,9 @@
       <li class="list-group-item">
         <span>
           {{#if hasCity}}
-            <strong>Escolha zona eleitoral</strong>
+            <strong>⃪ Escolha a zona eleitoral</strong>
           {{else}}
-            Escolha zona eleitoral
+            Escolha a zona eleitoral
           {{/if}}
         </span>
       </li>
