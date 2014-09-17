@@ -29,6 +29,7 @@
         {{/if}}
       </span>
     </li>
+
     {{#if isElectionZone}}
       <li class="list-group-item list-group-item-btn-monitor">
         <div class="btn-monitor">
@@ -42,7 +43,7 @@
             {{/if}}
             {{#if currentUser}}
             {{else}}
-              <p class="needs-login"><small>Você precisa fazer login para adotar uma zona eleitoral</small></p>
+              <p class="needs-login"><small>Faça login para adotar uma zona eleitoral</small></p>
             {{/if}}
           {{/if}}
         </div>
@@ -59,4 +60,7 @@
       </li>
     {{/if}}
   </ul>
+
+  <p><strong>Você pode consultar qual é a sua zona eleitoral <a href="http://www.tse.jus.br/eleitor/servicos/titulo-e-local-de-votacao/consulta-por-nome" target="_blank">neste site do TSE</a>, não precisa saber o número do título de eleitor.</strong></p>
+
 </template>
