@@ -6,7 +6,6 @@
 standard-app-packages
 accounts-base
 accounts-password
-cmather:iron-router@0.8.2
 ian:bootstrap-3
 ian:accounts-ui-bootstrap-3
 ian:bootstrap-3-theme
@@ -14,4 +13,5 @@ email
 obvio171:disqus
 meteorhacks:kadira
 showdown
+iron:router
 
