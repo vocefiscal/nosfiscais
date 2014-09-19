@@ -14,4 +14,7 @@ obvio171:disqus
 meteorhacks:kadira
 showdown
 iron:router
+cfs:standard-packages
+cfs:gridfs
+cfs:s3
 
