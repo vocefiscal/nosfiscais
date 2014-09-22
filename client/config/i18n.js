@@ -23,15 +23,15 @@ accountsUIBootstrap3.map('pt', {
 		signOut: 'Sair'
 	},
 	_loginButtonsLoggedOutDropdown: {
-		signIn: 'Entrar',
-		up: 'Cadastro'
+		signIn: 'Fazer login',
+		up: 'Criar conta'
 	},
 	_loginButtonsLoggedOutPasswordServiceSeparator: {
 		or: 'ou'
 	},
 	_loginButtonsLoggedOutPasswordService: {
 		create: 'Criar',
-		signIn: 'Entrar',
+		signIn: 'Fazer login',
 		forgot: 'Esqueceu a senha?',
 		createAcc: 'Criar conta'
 	},
