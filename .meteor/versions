@@ -22,7 +22,6 @@ cfs:http-publish@0.0.0
 cfs:power-queue@0.0.1
 cfs:reactive-list@0.0.0
 cfs:reactive-property@0.0.0
-cfs:s3@0.0.0
 cfs:standard-packages@0.0.2
 cfs:storage-adapter@0.0.0
 cfs:tempstore@0.0.2
@@ -67,6 +66,7 @@ mongo@1.0.6
 npm-bcrypt@0.7.7
 observe-sequence@1.0.2
 obvio171:disqus@1.0.0
+obvio171:s3@0.0.1
 ordered-dict@1.0.0
 raix:eventemitter@0.0.1
 random@1.0.0

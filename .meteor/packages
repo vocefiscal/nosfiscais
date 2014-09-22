@@ -16,5 +16,4 @@ showdown
 iron:router
 cfs:standard-packages
 cfs:gridfs
-cfs:s3
-
+obvio171:s3
