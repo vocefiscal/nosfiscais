@@ -1,7 +1,9 @@
 function seedLocatorsDatabase(unsavedLocators, parentLocatorId) {
   var locatorIds = _(unsavedLocators).map(function (unsavedLocator) {
-    return Locators.insert(_({}).extend(unsavedLocator,
-      { parentId: parentLocatorId }));
+    var locator = Locators.findOne({ slug: unsavedLocator.slug });
+    return  (locator && locator._id) ||
+      Locators.insert(_({}).extend(unsavedLocator,
+        { parentId: parentLocatorId }));
   });
 
   Locators.find({ _id: { $in: locatorIds } }).
