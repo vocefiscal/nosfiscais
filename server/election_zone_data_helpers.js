@@ -95,15 +95,6 @@ for (var i=0; i < defaultDiacriticsRemovalap.length; i++){
     }
 }
 
-// "what?" version ... http://jsperf.com/diacritics/12
-function removeDiacritics (str) {
-    return str.replace(/[^\u0000-\u007E]/g, function(a){
-       return diacriticsMap[a] || a;
-    });
-}
-
-// END removeDiacritics section
-
 Meteor.myConstants = {
   slugPropertyOrder: ['regionCode', 'stateCode', 'city', 'electionZone'],
   slugNameOrder: ['region', 'state', 'city', 'electionZone']
@@ -144,11 +135,19 @@ function locatorSubsetFromSlug(locator, locatorSlug) {
 }
 
 Meteor.myFunctions = {
+  // "what?" version ... http://jsperf.com/diacritics/12
+  removeDiacritics : function (str) {
+      return str.replace(/[^\u0000-\u007E]/g, function(a){
+         return diacriticsMap[a] || a;
+      });
+  },
+
   toLocatorSlug : function(locator) {
     return locator.regionCode.toLowerCase() + '/' +
       locator.stateCode.toLowerCase() + '/' +
-      removeDiacritics(locator.city.toLowerCase()).replace(/\s+/g, '-') +
-      '/zona-' + locator.electionZone;
+      Meteor.myFunctions.removeDiacritics(locator.city.toLowerCase()).
+      replace(/\s+/g, '-') + '/zona-' + ('00' + zone.electionZone).slice(-3);
+      // slice() hack above turns "1" into "001"
   },
 
   fromLocatorSlug : function(locatorSlug) {
