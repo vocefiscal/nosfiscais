@@ -26,8 +26,8 @@
               {{/if}}
               <a href="{{ pathFor 'locatorPage' }}">{{shortNameLowerCase}}</a>
               <span class="label label-default">
-                {{monitorsCount}}
-                <span class="glyphicon glyphicon-heart"></span>
+                {{monitorsCount}} fiscais{{#if isElectionZone}}{{else}} / {{emptyZonesStats}}{{/if}}
+                <!-- <span class="glyphicon glyphicon-heart"></span> -->
               </span>
             </h1>
 

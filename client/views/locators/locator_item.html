@@ -3,6 +3,6 @@
     <span>
       {{shortNameLowerCase}}
     </span>
-    <span class="badge pull-right" style="margin-top: 0.8em;">{{#if monitorsCount}}{{monitorsCount}}{{/if}}</span>
+    <span class="badge pull-right" style="margin-top: 0.8em;">{{monitorsCount}} fiscais{{#if isElectionZone}}{{else}} / {{emptyZonesStats}}{{/if}}</span>
   </a>
 </template>

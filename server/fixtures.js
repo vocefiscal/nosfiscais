@@ -24,7 +24,7 @@ function seedLocatorsDatabase(unsavedLocators, parentLocatorId) {
   return locatorIds;
 }
 
-// Initial seeding with the incomplete data we got from http://estatistica.tse.jus.br:7777/dwtse/f?p=600:
+// Migration #0: initial seeding with the incomplete data we got from http://estatistica.tse.jus.br:7777/dwtse/f?p=600:
 if (Locators.find().count() === 0) {
   seedLocatorsDatabase(
     _(['n', 'co', 'ne', 's', 'se']).map(Meteor.myFunctions.fromLocatorSlug),
@@ -32,6 +32,7 @@ if (Locators.find().count() === 0) {
   );
 }
 
+// Migration #1:
 var secondSource;
 // Add missing cities and election zones from http://agencia.tse.jus.br/estatistica/sead/odsele/votacao_partido_munzona/votacao_partido_munzona_2012.zip
 if (Locators.find().count() === 5369) {
@@ -64,4 +65,23 @@ if (Locators.find().count() === 5369) {
     _(['n', 'co', 'ne', 's', 'se']).map(Meteor.myFunctions.fromLocatorSlug),
     null
   );
+}
+
+// Migration #3:
+if (Locators.findOne().emptyZonesCount === undefined) {
+  Locators.find({ slug: { $regex: '^[a-z]+\/[a-z]+\/[a-z-]+\/[a-z0-9-]+$' } }).
+  forEach(function (zone) {
+    var emptyZonesCount = zone.monitorsCount() === 0 ? 1 : 0;
+    Locators.update(zone._id, { $set: {
+      emptyZonesCount: emptyZonesCount, zonesCount: 1
+    } });
+    // Denormalization: each node up the tree has the total for
+    // all election zones in its subtree
+    var parentLocator = zone.parentLocator();
+    while (parentLocator) {
+      Locators.update(parentLocator._id, { $inc: {
+        emptyZonesCount: emptyZonesCount, zonesCount: 1 } });
+      parentLocator = parentLocator.parentLocator();
+    }
+  });
 }
