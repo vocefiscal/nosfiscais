@@ -12,6 +12,6 @@ Template.home.helpers({
     var zonesCount = _(states).reduce(
       function (sum, state) { return sum + state.zonesCount; }, 0);
     var avg = monitorsCount / zonesCount;
-    return emptyCount ? 'faltam ' + emptyCount : avg.toString() + ' por zona'
+    return emptyCount ? 'faltam ' + emptyCount : parseFloat(Math.round(avg * 10) / 10).toFixed(1) + ' por zona'
   }
 });
