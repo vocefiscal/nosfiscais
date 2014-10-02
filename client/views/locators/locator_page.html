@@ -59,10 +59,12 @@
                     Adote-a clicando no botão à direita
                     <span class="glyphicon glyphicon-arrow-right pull-right"></span>
                   </p>
-                  <h4>Alguém já adotou minha zona, o que eu faço?</h4>
-                  <p>
-                    Adote também! Cada zona tem vários locais de votação, cada um com várias seções eleitorais, então <strong>precisamos de MUITA gente em cada zona</strong>. Se já tem alguém, não se desencoraje: isso é ótimo! Vamos juntar forças e cobrir mais seções eleitorais!
-                  </p>
+                  {{#if monitorsCount}}
+                    <h4>Alguém já adotou minha zona, o que eu faço?</h4>
+                    <p>
+                      Adote também! Cada zona tem vários locais de votação, cada um com várias seções eleitorais, então <strong>precisamos de MUITA gente em cada zona</strong>. Se já tem alguém, não se desencoraje: isso é ótimo! Vamos juntar forças e cobrir mais seções eleitorais!
+                    </p>
+                  {{/if}}
                 </div>
               {{/if}}
               {{#if monitorsCount}}
