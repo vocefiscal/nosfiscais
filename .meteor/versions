@@ -55,6 +55,7 @@ localstorage@1.0.0
 logging@1.0.3
 meteor-platform@1.1.1
 meteor@1.1.1
+meteorhacks:customer.io@1.1.0
 meteorhacks:kadira-binary-deps@1.2.0
 meteorhacks:kadira@2.11.6
 minifiers@1.1.0
