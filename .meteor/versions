@@ -9,7 +9,6 @@ blaze-tools@1.0.0
 blaze@2.0.1
 boilerplate-generator@1.0.0
 callback-hook@1.0.0
-check@1.0.1
 cfs:access-point@0.0.0
 cfs:base-package@0.0.0
 cfs:collection-filters@0.0.0
@@ -27,7 +26,7 @@ cfs:storage-adapter@0.0.0
 cfs:tempstore@0.0.2
 cfs:upload-http@0.0.2
 cfs:worker@0.0.0
-check@1.0.0
+check@1.0.1
 ctl-helper@1.0.3
 ctl@1.0.1
 ddp@1.0.9
@@ -66,7 +65,7 @@ mongo@1.0.6
 npm-bcrypt@0.7.7
 observe-sequence@1.0.2
 obvio171:disqus@1.0.0
-obvio171:s3@0.0.1
+obvio171:s3@0.0.2
 ordered-dict@1.0.0
 raix:eventemitter@0.0.1
 random@1.0.0
