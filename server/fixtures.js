@@ -36,6 +36,7 @@ if (Locators.find().count() === 0) {
 var secondSource;
 // Add missing cities and election zones from http://agencia.tse.jus.br/estatistica/sead/odsele/votacao_partido_munzona/votacao_partido_munzona_2012.zip
 if (Locators.find().count() === 5369) {
+  newElectionZoneData = JSON.parse(Assets.getText('data/election_zones.json'));
   var states = Locators.findStates().fetch();
   // Complete information in new election zones from existing locators so we
   // adhere to the same format as election_zone_data.js for seeding.
