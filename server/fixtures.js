@@ -86,3 +86,23 @@ if (Locators.findOne().emptyZonesCount === undefined) {
     }
   });
 }
+
+// Migration #4: assign locatorType for all locators
+var untypedLocators = Locators.find({ locatorType: { $exists: false } });
+if (untypedLocators.count() !== 0) {
+  untypedLocators.forEach(function (loc) {
+    if (loc.electoralSection !== undefined) {
+      Locators.update(loc._id, { $set: { locatorType: 'electoralSection' } });
+    } else if (loc.electionZone !== undefined) {
+      Locators.update(loc._id, { $set: { locatorType: 'electionZone' } });
+    } else if (loc.city !== undefined) {
+      Locators.update(loc._id, { $set: { locatorType: 'city' } });
+    } else if (loc.state !== undefined) {
+      Locators.update(loc._id, { $set: { locatorType: 'state' } });
+    } else if (loc.region !== undefined) {
+      Locators.update(loc._id, { $set: { locatorType: 'region' } });
+    } else {
+      console.log("Error while assigning type to: " + JSON.stringify(loc));
+    }
+  });
+}
