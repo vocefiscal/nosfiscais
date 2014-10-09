@@ -68,7 +68,7 @@ if (Locators.find().count() === 5369) {
   );
 }
 
-// Migration #3:
+// Migration #3: Denormalize empty zones count
 if (Locators.findOne().emptyZonesCount === undefined) {
   Locators.find({ slug: { $regex: '^[a-z]+\/[a-z]+\/[a-z-]+\/[a-z0-9-]+$' } }).
   forEach(function (zone) {
