@@ -106,3 +106,19 @@ if (untypedLocators.count() !== 0) {
     }
   });
 }
+
+// Migration #5: add existing users to Customer.io
+var unidentifiedUsers = Meteor.users.find({ customerIo: { $exists: false } });
+if (unidentifiedUsers.count() !== 0) {
+  var cio = CustomerIo.init(Meteor.settings.customerIo.siteId,
+    Meteor.settings.customerIo.apiKey);
+
+  unidentifiedUsers.forEach(function (user) {
+    // Add to Customer.io
+    cio.identify(user._id, user.emails[0].address);
+
+    // Remember that we added to Customer.io
+    Meteor.users.update(user._id, { $set: {
+      customerIo: { isIdentified: true } } });
+  });
+}
