@@ -114,6 +114,10 @@ if (unidentifiedUsers.count() !== 0) {
     Meteor.settings.customerIo.apiKey);
 
   unidentifiedUsers.forEach(function (user) {
+    // If user had been created from the newsletter form with their email
+    // as the ID, we need to remove them first to avoid duplicate emails
+    cio.delete(user.emails[0].address);
+
     // Add to Customer.io
     cio.identify(user._id, user.emails[0].address);
 
