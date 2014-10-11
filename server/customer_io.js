@@ -25,6 +25,7 @@ CustomerIo.prototype.identifyUser = function(user, properties, callback) {
   var id = user._id;
   properties.email = user.emails[0].address;
   properties.created_at = Math.floor(user.createdAt.getTime() / 1000);
+  properties.nosfiscais_verified = user.emails[0].verified;
   var url = this.endPoint + "/" + id;
   request.put(url, {
     auth: this._getAuth(),
