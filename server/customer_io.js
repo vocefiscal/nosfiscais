@@ -77,7 +77,8 @@ CustomerIo.init = function(siteId, apiToken) {
 Accounts.onLogin(function (attemptInfo) {
   var cio = CustomerIo.init(Meteor.settings.customerIo.siteId,
     Meteor.settings.customerIo.apiKey);
-  cio.identifyUser(attemptInfo.user);
+  cio.identifyUser(attemptInfo.user, { _last_visit:
+    Math.floor(new Date().getTime() / 1000) });
 })
 
 Accounts.onCreateUser(function (options, user) {
