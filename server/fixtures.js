@@ -106,3 +106,23 @@ if (untypedLocators.count() !== 0) {
     }
   });
 }
+
+// Migration #5: add existing users to Customer.io
+var unidentifiedUsers = Meteor.users.find({ customerIo: { $exists: false } });
+if (unidentifiedUsers.count() !== 0) {
+  var cio = CustomerIo.init(Meteor.settings.customerIo.siteId,
+    Meteor.settings.customerIo.apiKey);
+
+  unidentifiedUsers.forEach(function (user) {
+    // If user had been created from the newsletter form with their email
+    // as the ID, we need to remove them first to avoid duplicate emails
+    cio.delete(user.emails[0].address);
+
+    // Add to Customer.io
+    cio.identify(user._id, user.emails[0].address);
+
+    // Remember that we added to Customer.io
+    Meteor.users.update(user._id, { $set: {
+      customerIo: { isIdentified: true } } });
+  });
+}

@@ -1,0 +1,26 @@
+{
+  "mailUrl": "",
+  "public": {
+    "disqus": {
+      "shortname": ""
+    },
+    "site": {
+      "siteName": "Nos Fiscais Clone",
+      "slogan": "Fiscalize a eleição, garanta seu voto"
+    }
+  },
+  "customerIo": {
+    "siteId": "",
+    "apiKey": ""
+  },
+  "kadira": {
+    "appId": "",
+    "appSecret": ""
+  },
+  "s3PollTapeStats": {
+    "region": "",
+    "accessKeyId": "",
+    "secretAccessKey": "",
+    "bucket": ""
+  }
+}

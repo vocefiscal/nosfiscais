@@ -1,1 +1,2 @@
-server/config/meteor_settings.json
+server/config/meteor_settings_production.json
+server/config/meteor_settings_development.json
