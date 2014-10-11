@@ -119,7 +119,7 @@ if (unidentifiedUsers.count() !== 0) {
     cio.delete(user.emails[0].address);
 
     // Add to Customer.io
-    cio.identify(user._id, user.emails[0].address);
+    cio.identifyUser(user);
 
     // Remember that we added to Customer.io
     Meteor.users.update(user._id, { $set: {

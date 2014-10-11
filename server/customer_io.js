@@ -7,9 +7,24 @@ CustomerIo = function (siteId, apiToken) {
   this.endPoint = 'https://track.customer.io/api/v1/customers';
 }
 
-CustomerIo.prototype.identify = function(id, email, properties, callback) {
+CustomerIo.prototype.identify = function(id, email, created_at, properties,
+  callback) {
   properties = (properties)? _.clone(properties) : {};
   properties.email = email;
+  properties.created_at = created_at;
+  var url = this.endPoint + "/" + id;
+  request.put(url, {
+    auth: this._getAuth(),
+    headers: this._getHeaders(),
+    json: properties
+  }, callback);
+};
+
+CustomerIo.prototype.identifyUser = function(user, properties, callback) {
+  properties = (properties)? _.clone(properties) : {};
+  var id = user._id;
+  properties.email = user.emails[0].address;
+  properties.created_at = Math.floor(user.createdAt.getTime() / 1000);
   var url = this.endPoint + "/" + id;
   request.put(url, {
     auth: this._getAuth(),
@@ -61,7 +76,7 @@ CustomerIo.init = function(siteId, apiToken) {
 Accounts.onLogin(function (attemptInfo) {
   var cio = CustomerIo.init(Meteor.settings.customerIo.siteId,
     Meteor.settings.customerIo.apiKey);
-  cio.identify(attemptInfo.user._id, attemptInfo.user.emails[0].address);
+  cio.identifyUser(attemptInfo.user);
 })
 
 Accounts.onCreateUser(function (options, user) {
@@ -71,7 +86,7 @@ Accounts.onCreateUser(function (options, user) {
   // If user had been created from the newsletter form with their email
   // as the ID, we need to remove them first to avoid duplicate emails
   cio.delete(user.emails[0].address);
-  cio.identify(user._id, user.emails[0].address);
+  cio.identifyUser(user);
   user.customerIo = { isIdentified: true };
 
   // We still want the default hook's 'profile' behavior.
