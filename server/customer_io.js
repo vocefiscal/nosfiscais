@@ -25,7 +25,7 @@ CustomerIo.prototype.identifyUser = function(user, properties, callback) {
   var id = user._id;
   properties.email = user.emails[0].address;
   properties.created_at = Math.floor(user.createdAt.getTime() / 1000);
-  properties.nosfiscais_verified = user.emails[0].verified;
+  _(properties).extend(user.customerIo);
   var url = this.endPoint + "/" + id;
   request.put(url, {
     auth: this._getAuth(),
@@ -77,7 +77,16 @@ CustomerIo.init = function(siteId, apiToken) {
 Accounts.onLogin(function (attemptInfo) {
   var cio = CustomerIo.init(Meteor.settings.customerIo.siteId,
     Meteor.settings.customerIo.apiKey);
-  cio.identifyUser(attemptInfo.user, { _last_visit:
+  var user = attemptInfo.user;
+
+  // If this is the user's first login, set the corresponding flag on customerIo
+  if (! user.customerIo['isNosFiscaisUser']) {
+    Meteor.users.update(user._id, { $set: {
+      'customerIo.isNosFiscaisUser': true } });
+    // Reflect change in memory for cio.identifyUser to get updated value
+    user.customerIo['isNosFiscaisUser'] = true;
+  }
+  cio.identifyUser(user, { _last_visit:
     Math.floor(new Date().getTime() / 1000) });
 })
 
@@ -88,8 +97,8 @@ Accounts.onCreateUser(function (options, user) {
   // If user had been created from the newsletter form with their email
   // as the ID, we need to remove them first to avoid duplicate emails
   cio.delete(user.emails[0].address);
+  user.customerIo = {};
   cio.identifyUser(user);
-  user.customerIo = { isIdentified: true };
 
   // We still want the default hook's 'profile' behavior.
   if (options.profile)

@@ -126,3 +126,23 @@ if (unidentifiedUsers.count() !== 0) {
       customerIo: { isIdentified: true } } });
   });
 }
+
+// Migration #6: replace isIdentified with isNosFiscaisUser on Customer.io
+var users = Meteor.users.find({ 'customerIo.isIdentified': { $exists: true } });
+if (users.count() !== 0) {
+  var cio = CustomerIo.init(Meteor.settings.customerIo.siteId,
+    Meteor.settings.customerIo.apiKey);
+
+  users.forEach(function (user) {
+    // Remember that we added isNosFiscaisUser to Customer.io
+    Meteor.users.update(user._id, { $set: {
+      customerIo: { isNosFiscaisUser: true } } });
+
+    // Reflect change in memory so that cio.identifyUser() gets the new value
+    user.customerIo['isNosFiscaisUser'] = true;
+
+    // identifyUser sends everything in user.customerIo as properties to cio
+    cio.identifyUser(user);
+
+  });
+}
