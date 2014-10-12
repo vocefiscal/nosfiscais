@@ -13,6 +13,10 @@
     "siteId": "",
     "apiKey": ""
   },
+  "dataUrls": {
+    "isPollTapeSenderByEmail": "",
+    "isCatarseBacker": ""
+  },
   "kadira": {
     "appId": "",
     "appSecret": ""

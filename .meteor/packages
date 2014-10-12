@@ -17,3 +17,5 @@ iron:router
 cfs:standard-packages
 cfs:gridfs
 obvio171:s3
+http
+
