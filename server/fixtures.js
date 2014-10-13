@@ -148,36 +148,39 @@ if (users.count() !== 0) {
 }
 
 function importEmailsFromUrlAsUsers(source) {
-  var url = Meteor.settings.dataUrls[source];
-  // Expects a single-line text file with email addresses separated by ", "
-  var result = HTTP.get(url).content;
-  var emails = result.trim().split(', ');
-  var userIds = _(emails).map(function (email) {
-    // Find or create user
-    var existingUser = Meteor.users.findOne({ "emails.address" : email });
-    var userId =  existingUser ? existingUser._id :
-      Accounts.createUser({ email: email });
+  var sourceQuery = {};
+  sourceQuery['customerIo.' + source] = { $exists: true };
+  var users = Meteor.users.find(sourceQuery);
 
-    // Add field to customerIo info. We'll use this for segments.
-    var fieldValue = {};
-    fieldValue['customerIo.' + source] = true;
-    Meteor.users.update(userId, { $set: fieldValue });
+  // Proceed only if we haven't imported from this source yet
+  if (users.count() === 0) {
+    var url = Meteor.settings.dataUrls[source];
+    // Expects a single-line text file with email addresses separated by ", "
+    var result = HTTP.get(url).content;
+    var emails = result.trim().split(', ');
+    var userIds = _(emails).map(function (email) {
+      // Find or create user
+      var existingUser = Meteor.users.findOne({ "emails.address" : email });
+      var userId =  existingUser ? existingUser._id :
+        Accounts.createUser({ email: email });
 
-    // Reidentify, now with segment field (first identify happens on createUser)
-    var cio = CustomerIo.init(Meteor.settings.customerIo.siteId,
-      Meteor.settings.customerIo.apiKey);
+      // Add field to customerIo info. We'll use this for segments.
+      var sourceSegmentField = {};
+      sourceSegmentField['customerIo.' + source] = true;
+      Meteor.users.update(userId, { $set: sourceSegmentField });
 
-    cio.identifyUser(Meteor.users.findOne(userId));
-    return userId;
-  });
+      // Reidentify, now with segment field (first identify happens on createUser)
+      var cio = CustomerIo.init(Meteor.settings.customerIo.siteId,
+        Meteor.settings.customerIo.apiKey);
+
+      cio.identifyUser(Meteor.users.findOne(userId));
+      return userId;
+    });
+  }
 }
 
-// Migration #7: add users from bu@vocefiscal.org and Catarse
-_(['isPollTapeSenderByEmail', 'isCatarseBacker']).each(function (source) {
-  var fieldValue = {};
-  fieldValue['customerIo.' + source] = { $exists: true };
-  var users = Meteor.users.find(fieldValue);
-  if (users.count() === 0) {
-    importEmailsFromUrlAsUsers(source);
-  }
+// Migration #7: add users from bu@vocefiscal.org, Catarse, and app
+_(['isPollTapeSenderByEmail', 'isPollTapeSenderByApp', 'isCatarseBacker']).
+  each(function (source) {
+  importEmailsFromUrlAsUsers(source);
 });
