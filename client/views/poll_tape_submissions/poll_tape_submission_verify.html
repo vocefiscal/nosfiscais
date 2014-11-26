@@ -1,0 +1,29 @@
+<template name="pollTapeSubmissionVerify">
+  <div class="container">
+    <div id="main" class="row row-fluid">
+      <div class="well-sm text-center">
+        <h1>Confira os Boletins de Urna</h1>
+        <p class="lead">Participe do mutirão de conferência dos resultados</p>
+      </div>
+
+      <div id="content" class="column col-md-6">
+        <div class="body">
+          <h1>{{ city }}</h1>
+        </div>
+        <div id="pollTapeSubmissionPictures">
+          {{#each pictureURLs}}
+            <img src="{{ this }}" alt="" width="420" />
+          {{/each}}
+        </div>
+      </div>
+
+      <div id="aside" class="column col-md-6">
+      </div>
+
+    </div>
+  </div>
+  <div class="footer">
+    {{> footer}}
+  </div>
+
+</template>
