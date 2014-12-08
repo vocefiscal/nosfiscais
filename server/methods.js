@@ -1,3 +1,37 @@
+// *** Crowdchecking of Poll Tape Submissions
+Meteor.methods({
+  updateCurrentPollTapeSubmissionForReviewId: function () {
+    if (! this.userId) {
+      throw new Meteor.Error(401, "Por favor, faça login para acessar esta " +
+      "função. Obrigado.");
+    }
+
+    var reviewedIds = _(PollTapeVerifications.find({ userId: this.userId },
+      { fields: { _id: 1 } }).fetch()).pluck('_id');
+
+      var random = Math.random();
+
+      var ptsForReview = PollTapeSubmissions.findOne({
+        _id: { $nin: reviewedIds },
+        verificationCount: { $lte: 2 },
+        random: { $gte: random }
+      });
+
+      if ( !ptsForReview ) {
+        ptsForReview = PollTapeSubmissions.findOne(
+          { verificationCount: { $lte: 2 }, random: { $lte: random } }
+        );
+      }
+
+      // If there are none left for this user, set it to null
+      Meteor.users.update(this.userId, { $set: {
+        currentPollTapeSubmissionForReviewId: ptsForReview._id } });
+
+        return ptsForReview._id;
+      }
+    });
+
+
 // *** Locators ***
 
 Meteor.methods({
