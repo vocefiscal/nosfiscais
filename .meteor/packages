@@ -19,4 +19,6 @@ cfs:gridfs
 obvio171:s3
 http
 aldeed:collection2
+aldeed:autoform
+matb33:collection-hooks
 

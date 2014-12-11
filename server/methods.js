@@ -1,36 +1,58 @@
 // *** Crowdchecking of Poll Tape Submissions
+
+function updateCurrentPtsForReviewId(userId) {
+  var user = Meteor.users.findOne(userId);
+  if (! user) {
+    throw new Meteor.Error("userId-does-not-exist", "userId " + userId +
+      " does not exist.");
+  }
+
+  var reviewedIds = _(PollTapeVerifications.find({ userId: user._id },
+    { fields: { _id: 1 } }).fetch()).pluck('_id');
+
+  var random = Math.random();
+
+  var ptsForReview = PollTapeSubmissions.findOne({
+    _id: { $nin: reviewedIds },
+    verificationCount: { $lte: 2 },
+    random: { $gte: random }
+  });
+
+  if ( !ptsForReview ) {
+    ptsForReview = PollTapeSubmissions.findOne(
+      { verificationCount: { $lte: 2 }, random: { $lte: random } }
+    );
+  }
+
+  // If there are none left for this user, set it to null
+  Meteor.users.update(user._id, { $set: {
+    currentPollTapeSubmissionForReviewId: ptsForReview._id } });
+
+  return ptsForReview._id;
+}
+
 Meteor.methods({
   updateCurrentPollTapeSubmissionForReviewId: function () {
-    if (! this.userId) {
-      throw new Meteor.Error(401, "Por favor, faça login para acessar esta " +
-      "função. Obrigado.");
-    }
+    return updateCurrentPtsForReviewId(this.userId);
+  }
+});
 
-    var reviewedIds = _(PollTapeVerifications.find({ userId: this.userId },
-      { fields: { _id: 1 } }).fetch()).pluck('_id');
+PollTapeVerifications.allow({
+  // Insert callers: template `pollTapeSubmissionVerify`
+  insert: function (userId, doc) {
+    var user = Meteor.users.findOne(userId);
+    var isOwner = user._id === doc.userId;
+    var isCurrentPtsForReview = user.currentPollTapeSubmissionForReviewId ===
+      doc.pollTapeSubmissionId;
+    return isOwner && isCurrentPtsForReview;
+  }
+});
 
-      var random = Math.random();
-
-      var ptsForReview = PollTapeSubmissions.findOne({
-        _id: { $nin: reviewedIds },
-        verificationCount: { $lte: 2 },
-        random: { $gte: random }
-      });
-
-      if ( !ptsForReview ) {
-        ptsForReview = PollTapeSubmissions.findOne(
-          { verificationCount: { $lte: 2 }, random: { $lte: random } }
-        );
-      }
-
-      // If there are none left for this user, set it to null
-      Meteor.users.update(this.userId, { $set: {
-        currentPollTapeSubmissionForReviewId: ptsForReview._id } });
-
-        return ptsForReview._id;
-      }
-    });
-
+PollTapeVerifications.after.insert(function (userId, doc) {
+  PollTapeSubmissions.update(doc.pollTapeSubmissionId, { $inc: {
+    verificationCount: 1 } });
+  updateCurrentPtsForReviewId(doc.userId);
+});
 
 // *** Locators ***
 

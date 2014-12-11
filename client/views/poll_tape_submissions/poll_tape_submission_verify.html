@@ -7,10 +7,8 @@
       </div>
 
       <div id="content" class="column col-md-6">
-        <div class="body">
-          <h1>{{ city }}</h1>
-        </div>
         <div id="pollTapeSubmissionPictures">
+          <h1>{{ city }}</h1>
           {{#each pictureURLs}}
             <img src="{{ this }}" alt="" width="420" />
           {{/each}}
@@ -18,6 +16,33 @@
       </div>
 
       <div id="aside" class="column col-md-6">
+        {{#autoForm collection="PollTapeVerifications" type="insert"
+          id="insertPollTapeVerificationForm" resetOnSuccess=true}}
+          <fieldset>
+            <legend>Conferir Boletim de Urna</legend>
+            <input type="hidden" value="{{currentUser._id}}" name="userId"
+              required="" data-schema-key="userId">
+            <input type="hidden" value="{{this._id}}" name="pollTapeSubmissionId"
+              required="" data-schema-key="pollTapeSubmissionId">
+            {{> afQuickField name='isPollTape'}}
+            {{#if isPollTape}}
+              {{> afQuickField name='isComplete'}}
+              {{> afQuickField name='isReadable'}}
+              {{> afQuickField name='isSigned'}}
+              {{#if isPollTapeAndCompleteAndReadable}}
+                {{> afQuickField name='electionRound'}}
+                {{> afQuickField name='electionZone'}}
+                {{> afQuickField name='electoralSection'}}
+              {{/if}}
+            {{/if}}
+
+            {{#if isPollTapeAndCompleteAndReadable}}
+              {{> afQuickField name='isAnythingDifferentFromOfficial'}}
+            {{/if}}
+          </fieldset>
+
+          <button type="submit" class="btn btn-primary">Insert</button>
+        {{/autoForm}}
       </div>
 
     </div>
