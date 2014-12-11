@@ -24,11 +24,11 @@
               required="" data-schema-key="userId">
             <input type="hidden" value="{{this._id}}" name="pollTapeSubmissionId"
               required="" data-schema-key="pollTapeSubmissionId">
-            {{> afQuickField name='isPollTape'}}
+            {{> afQuickField name='isPollTape' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
             {{#if isPollTape}}
-              {{> afQuickField name='isComplete'}}
-              {{> afQuickField name='isReadable'}}
-              {{> afQuickField name='isSigned'}}
+              {{> afQuickField name='isComplete' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
+              {{> afQuickField name='isReadable' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
+              {{> afQuickField name='isSigned' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
               {{#if isPollTapeAndCompleteAndReadable}}
                 {{> afQuickField name='electionRound'}}
                 {{> afQuickField name='electionZone'}}
@@ -37,11 +37,11 @@
             {{/if}}
 
             {{#if isPollTapeAndCompleteAndReadable}}
-              {{> afQuickField name='isAnythingDifferentFromOfficial'}}
+              {{> afQuickField name='isAnythingDifferentFromOfficial' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
             {{/if}}
           </fieldset>
 
-          <button type="submit" class="btn btn-primary">Insert</button>
+          <button type="submit" class="btn btn-primary">Enviar conferência</button>
         {{/autoForm}}
       </div>
 
