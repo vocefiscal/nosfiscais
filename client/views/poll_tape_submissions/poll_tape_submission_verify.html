@@ -9,8 +9,11 @@
       <div id="content" class="column col-md-6">
         <div id="pollTapeSubmissionPictures">
           <h1>{{ city }}</h1>
+          <p>
+            Clique na foto para ampliar.
+          </p>
           {{#each pictureURLs}}
-            <img src="{{ this }}" alt="" width="420" />
+            <a href="{{ this }}" target="_blank"><img src="{{ this }}" alt="" width="420" /></a>
           {{/each}}
         </div>
       </div>
