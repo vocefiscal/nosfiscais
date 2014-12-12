@@ -19,29 +19,65 @@
         {{#autoForm collection="PollTapeVerifications" type="insert"
           id="insertPollTapeVerificationForm" resetOnSuccess=true}}
           <fieldset>
-            <legend>Conferir Boletim de Urna</legend>
+            <legend>Triagem</legend>
             <input type="hidden" value="{{currentUser._id}}" name="userId"
               required="" data-schema-key="userId">
             <input type="hidden" value="{{this._id}}" name="pollTapeSubmissionId"
               required="" data-schema-key="pollTapeSubmissionId">
-            {{> afQuickField name='isPollTape' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
+            {{> afQuickField name='isPollTape' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true tabindex="1"}}
             {{#if isPollTape}}
-              {{> afQuickField name='isComplete' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
-              {{> afQuickField name='isReadable' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
-              {{> afQuickField name='isSigned' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
+              {{> afQuickField name='isComplete' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true tabindex="2"}}
+              {{> afQuickField name='isReadable' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true tabindex="3"}}
+              {{> afQuickField name='isSigned' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true tabindex="4"}}
               {{#if isPollTapeAndCompleteAndReadable}}
-                {{> afQuickField name='electionRound'}}
-                {{> afQuickField name='electionZone'}}
-                {{> afQuickField name='electoralSection'}}
+                {{> afQuickField name='electionRound' tabindex="5"}}
+                {{> afQuickField name='electionZone' tabindex="6"}}
+                {{> afQuickField name='electoralSection' tabindex="7"}}
               {{/if}}
             {{/if}}
-
-            {{#if isPollTapeAndCompleteAndReadable}}
-              {{> afQuickField name='isAnythingDifferentFromOfficial' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
-            {{/if}}
           </fieldset>
+          {{#if isValidAndCategorized}}
+            <fieldset>
+              <legend>Conferência</legend>
+              <p>
+                <strong>ATENÇÃO! Veja como fazer a conferência:</strong>
+                <ol>
+                  <li>Visite o site do TSE. Lá está a versão eletrônica oficial de cada Boletim de Urna:<br />
+                    <strong><a href="http://www.tse.jus.br/eleicoes/eleicoes-2014/boletim-de-urna-na-web" target="_blank">
+                      http://www.tse.jus.br/eleicoes/eleicoes-2014/boletim-de-urna-na-web
+                    </a></strong>
+                  </li>
+                  <li>
+                    <p>
+                      Encontre o BU eletrônico correspondente às fotos ao lado
+                      entrando com:<br />
+                      - turno: {{formElectionRound}},<br />
+                      - UF: {{stateCode}},<br />
+                      - município: {{city}},<br />
+                      - zona: {{formElectionZone}},<br />
+                      - seção: {{formElectoralSection}}<br />
+                      e clicando em <strong>"Pesquisar"</strong>.
+                    </p>
+                    <p>
+                      Veja instruções mais detalhadas
+                      <a href="http://www.vocefiscal.org/vemproBU/#conferencia" target="_blank"><strong>aqui</strong></a>.
+                    </p>
+                  </li>
+                  <li>Compare todos os campos que o BU impresso tiver em comum com o BU eletrônico e veja se há alguma divergência.</li>
+                </ol>
+              </p>
+              <div class="well">
+                {{> afQuickField name='isHonorCoded' type="boolean-radios" trueLabel="Sim, comparei cada campo da foto com o site do TSE." falseLabel="Não, apenas fiz a leitura do turno, da zona eleitoral e da seção eleitoral (triagem)." noselect=true tabindex="8"}}
+                {{#if isHonorCoded}}
+                  {{> afQuickField name='isAnythingDifferentFromOfficial' type="boolean-radios" trueLabel="Sim. Tem coisa que não bate." falseLabel="Não. As informações estão corretas." noselect=true tabindex="9"}}
+                {{/if}}
+              </div>
+            </fieldset>
+          {{/if}}
+          <hr />
+          {{> afQuickField name='comments' rows=6 tabindex="10"}}
 
-          <button type="submit" class="btn btn-primary">Enviar conferência</button>
+          <button type="submit" class="btn btn-primary" tabindex="11">Enviar conferência</button>
         {{/autoForm}}
       </div>
 

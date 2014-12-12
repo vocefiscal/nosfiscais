@@ -7,8 +7,44 @@ Template.pollTapeSubmissionVerify.helpers({
   isPollTapeAndCompleteAndReadable: function () {
     var formId = 'insertPollTapeVerificationForm';
     var isPollTape = AutoForm.getFieldValue(formId, 'isPollTape');
-    var isReadable = AutoForm.getFieldValue(formId, 'isReadable');
     var isComplete = AutoForm.getFieldValue(formId, 'isComplete');
+    var isReadable = AutoForm.getFieldValue(formId, 'isReadable');
     return isPollTape && isComplete && isReadable;
+  },
+  isValidAndCategorized: function () {
+    // Nice curried shorthand function, getFieldValue
+    var formId = 'insertPollTapeVerificationForm';
+    var getFieldValue = function (field) {
+      return AutoForm.getFieldValue(formId, field);
+    }
+
+    var fields = ['isPollTape', 'isComplete', 'isReadable', 'electionRound',
+      'electionZone', 'electoralSection'];
+    var values = _(fields).map(getFieldValue);
+    console.log(values);
+    var isValidAndCategorized = _(values).reduce(
+      function (memo, bool) { return memo && bool; }, true);
+      console.log(isValidAndCategorized);
+    return isValidAndCategorized;
+  },
+  isHonorCoded: function () {
+    var formId = 'insertPollTapeVerificationForm';
+    var isHonorCoded = AutoForm.getFieldValue(formId, 'isHonorCoded');
+    return isHonorCoded;
+  },
+  formElectionRound: function () {
+    var formId = 'insertPollTapeVerificationForm';
+    var electionRound = AutoForm.getFieldValue(formId, 'electionRound');
+    return electionRound;
+  },
+  formElectionZone: function () {
+    var formId = 'insertPollTapeVerificationForm';
+    var electionZone = AutoForm.getFieldValue(formId, 'electionZone');
+    return electionZone;
+  },
+  formElectoralSection: function () {
+    var formId = 'insertPollTapeVerificationForm';
+    var electoralSection = AutoForm.getFieldValue(formId, 'electoralSection');
+    return electoralSection;
   }
 });
