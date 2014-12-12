@@ -14,14 +14,14 @@ function updateCurrentPtsForReviewId(userId) {
 
   var ptsForReview = PollTapeSubmissions.findOne({
     _id: { $nin: reviewedIds },
-    verificationCount: { $lte: 10 },
+    verificationCount: 0,
     random: { $gte: random }
   });
 
   if ( !ptsForReview ) {
     ptsForReview = PollTapeSubmissions.findOne({
       _id: { $nin: reviewedIds },
-      verificationCount: { $lte: 10 },
+      verificationCount: 0,
       random: { $lte: random }
     });
   }
