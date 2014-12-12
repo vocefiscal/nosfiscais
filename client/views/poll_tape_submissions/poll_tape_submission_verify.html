@@ -8,7 +8,7 @@
 
       <div id="content" class="column col-md-6">
         <div id="pollTapeSubmissionPictures">
-          <h1>{{ city }}</h1>
+          <h3>{{ city }}, {{ stateCode }}</h3>
           <p>
             Clique na foto para ampliar.
           </p>
@@ -21,8 +21,8 @@
       <div id="aside" class="column col-md-6">
         {{#autoForm collection="PollTapeVerifications" type="insert"
           id="insertPollTapeVerificationForm" resetOnSuccess=true}}
-          <fieldset>
-            <legend>Triagem</legend>
+          <fieldset style="padding-top: 16px;">
+            <legend style="padding-top: 16px;">Triagem</legend>
             <input type="hidden" value="{{currentUser._id}}" name="userId"
               required="" data-schema-key="userId">
             <input type="hidden" value="{{this._id}}" name="pollTapeSubmissionId"
