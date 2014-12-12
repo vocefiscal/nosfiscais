@@ -14,21 +14,23 @@ function updateCurrentPtsForReviewId(userId) {
 
   var ptsForReview = PollTapeSubmissions.findOne({
     _id: { $nin: reviewedIds },
-    verificationCount: { $lte: 2 },
+    verificationCount: { $lte: 10 },
     random: { $gte: random }
   });
 
   if ( !ptsForReview ) {
-    ptsForReview = PollTapeSubmissions.findOne(
-      { verificationCount: { $lte: 2 }, random: { $lte: random } }
-    );
+    ptsForReview = PollTapeSubmissions.findOne({
+      _id: { $nin: reviewedIds },
+      verificationCount: { $lte: 10 },
+      random: { $lte: random }
+    });
   }
 
   // If there are none left for this user, set it to null
   Meteor.users.update(user._id, { $set: {
-    currentPollTapeSubmissionForReviewId: ptsForReview._id } });
+    currentPollTapeSubmissionForReviewId: ptsForReview && ptsForReview._id } });
 
-  return ptsForReview._id;
+  return ptsForReview && ptsForReview._id;
 }
 
 Meteor.methods({
