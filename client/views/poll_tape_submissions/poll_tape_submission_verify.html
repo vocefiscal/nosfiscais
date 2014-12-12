@@ -1,0 +1,54 @@
+<template name="pollTapeSubmissionVerify">
+  <div class="container">
+    <div id="main" class="row row-fluid">
+      <div class="well-sm text-center">
+        <h1>Confira os Boletins de Urna</h1>
+        <p class="lead">Participe do mutirão de conferência dos resultados</p>
+      </div>
+
+      <div id="content" class="column col-md-6">
+        <div id="pollTapeSubmissionPictures">
+          <h1>{{ city }}</h1>
+          {{#each pictureURLs}}
+            <img src="{{ this }}" alt="" width="420" />
+          {{/each}}
+        </div>
+      </div>
+
+      <div id="aside" class="column col-md-6">
+        {{#autoForm collection="PollTapeVerifications" type="insert"
+          id="insertPollTapeVerificationForm" resetOnSuccess=true}}
+          <fieldset>
+            <legend>Conferir Boletim de Urna</legend>
+            <input type="hidden" value="{{currentUser._id}}" name="userId"
+              required="" data-schema-key="userId">
+            <input type="hidden" value="{{this._id}}" name="pollTapeSubmissionId"
+              required="" data-schema-key="pollTapeSubmissionId">
+            {{> afQuickField name='isPollTape' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
+            {{#if isPollTape}}
+              {{> afQuickField name='isComplete' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
+              {{> afQuickField name='isReadable' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
+              {{> afQuickField name='isSigned' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
+              {{#if isPollTapeAndCompleteAndReadable}}
+                {{> afQuickField name='electionRound'}}
+                {{> afQuickField name='electionZone'}}
+                {{> afQuickField name='electoralSection'}}
+              {{/if}}
+            {{/if}}
+
+            {{#if isPollTapeAndCompleteAndReadable}}
+              {{> afQuickField name='isAnythingDifferentFromOfficial' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true}}
+            {{/if}}
+          </fieldset>
+
+          <button type="submit" class="btn btn-primary">Enviar conferência</button>
+        {{/autoForm}}
+      </div>
+
+    </div>
+  </div>
+  <div class="footer">
+    {{> footer}}
+  </div>
+
+</template>

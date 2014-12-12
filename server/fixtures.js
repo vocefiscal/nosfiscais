@@ -184,3 +184,23 @@ _(['isPollTapeSenderByEmail', 'isPollTapeSenderByApp', 'isCatarseBacker']).
   each(function (source) {
   importEmailsFromUrlAsUsers(source);
 });
+
+// Migration #8: import poll tape submissions from round 2
+if (PollTapeSubmissions.find().count() === 0) {
+  var url = 'https://raw.githubusercontent.com/vocefiscal/vocefiscal-backend/master/base-organizada-2t.json';
+  var allSubmissions = JSON.parse(HTTP.get(url).content)['pollTapeSubmissions'];
+  _(allSubmissions).each(function (submission) {
+    var newPollTapeSubmission = {
+      createdAt: submission.data,
+      electionRound: 2,
+      stateCode: submission.estado,
+      city: submission.municipio,
+      // cityCode: ,
+      electionZone: parseInt(submission.zonaEleitoral),
+      // electionVenue: parseInt(submission.localDaVotacao),
+      electoralSection: parseInt(submission.secaoEleitoral),
+      pictureURLs: submission.pictureURLList
+    };
+    PollTapeSubmissions.insert(newPollTapeSubmission);
+  });
+}
