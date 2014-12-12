@@ -27,6 +27,9 @@
               required="" data-schema-key="userId">
             <input type="hidden" value="{{this._id}}" name="pollTapeSubmissionId"
               required="" data-schema-key="pollTapeSubmissionId">
+            <div style="display: none;">
+              {{> afQuickField name='ptvStartedAt' value=pollTapeVerificationStartedAt type="datetime-local"}}
+            </div>
             {{> afQuickField name='isPollTape' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true tabindex="1"}}
             {{#if isPollTape}}
               {{> afQuickField name='isComplete' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true tabindex="2"}}

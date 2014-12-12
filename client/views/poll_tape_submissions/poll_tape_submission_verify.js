@@ -21,10 +21,8 @@ Template.pollTapeSubmissionVerify.helpers({
     var fields = ['isPollTape', 'isComplete', 'isReadable', 'electionRound',
       'electionZone', 'electoralSection'];
     var values = _(fields).map(getFieldValue);
-    console.log(values);
     var isValidAndCategorized = _(values).reduce(
       function (memo, bool) { return memo && bool; }, true);
-      console.log(isValidAndCategorized);
     return isValidAndCategorized;
   },
   isHonorCoded: function () {
@@ -46,5 +44,10 @@ Template.pollTapeSubmissionVerify.helpers({
     var formId = 'insertPollTapeVerificationForm';
     var electoralSection = AutoForm.getFieldValue(formId, 'electoralSection');
     return electoralSection;
+  },
+  pollTapeVerificationStartedAt: function () {
+    var ptvStartedAt = Session.get(
+      'pollTapeVerificationStartedAt-' + Meteor.userId());
+    return ptvStartedAt;
   }
 });
