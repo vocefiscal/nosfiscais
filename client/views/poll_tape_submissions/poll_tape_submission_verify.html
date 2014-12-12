@@ -9,7 +9,10 @@
       {{#if currentUser}}
         {{#if currentUser.pollTapeVerificationsCount}}
           <p class="text-center">
-            Você conferiu {{ currentUser.pollTapeVerificationsCount }} BU(s)! Parabéns :)
+            Conferências suas: {{ currentUser.pollTapeVerificationsCount }} |
+            Conferências até agora: {{getPublishedCount 'pollTapeVerifications'}} |
+            Conferências faltantes*: {{remainingVerificationsCount}}<br />
+            <small>*para que cada BU seja conferido por 3 pessoas diferentes</small>
           </p>
         {{/if}}
         <div id="content" class="column col-md-6">

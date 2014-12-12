@@ -52,5 +52,9 @@ Template.pollTapeSubmissionVerify.helpers({
       'pollTapeVerificationStartedAt-Date:userId-' + Meteor.userId() +
       ':pollTapeSubmissionId-' + currentPtsId);
     return ptvStartedAt;
+  },
+  remainingVerificationsCount: function () {
+    return (Counts.get('pollTapeSubmissions') * 3) -
+      Counts.get('pollTapeVerifications');
   }
 });

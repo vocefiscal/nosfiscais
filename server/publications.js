@@ -1,3 +1,11 @@
+Meteor.publish('pollTapeVerificationsCount', function () {
+  Counts.publish(this, 'pollTapeVerifications', PollTapeVerifications.find());
+});
+
+Meteor.publish('pollTapeSubmissionsCount', function () {
+  Counts.publish(this, 'pollTapeSubmissions', PollTapeSubmissions.find());
+});
+
 Meteor.publish('pollTapeSubmissions', function (ids) {
   return PollTapeSubmissions.find({ _id: { $in: ids } });
 });
