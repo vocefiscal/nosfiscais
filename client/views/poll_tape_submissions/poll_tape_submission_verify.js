@@ -46,7 +46,8 @@ Template.pollTapeSubmissionVerify.helpers({
     return electoralSection;
   },
   pollTapeVerificationStartedAt: function () {
-    var currentPtsId = Meteor.user().currentPollTapeSubmissionForReviewId;
+    var currentPtsId = Meteor.user() && Meteor.user().
+      currentPollTapeSubmissionForReviewId;
     var ptvStartedAt = Session.get(
       'pollTapeVerificationStartedAt-Date:userId-' + Meteor.userId() +
       ':pollTapeSubmissionId-' + currentPtsId);
