@@ -53,6 +53,11 @@ PollTapeVerifications.allow({
 PollTapeVerifications.after.insert(function (userId, doc) {
   PollTapeSubmissions.update(doc.pollTapeSubmissionId, { $inc: {
     verificationCount: 1 } });
+
+  var ptvsCount = PollTapeVerifications.find({ userId: userId }).count();
+  Meteor.users.update(userId, { $set: {
+    pollTapeVerificationsCount: ptvsCount } });
+
   updateCurrentPtsForReviewId(doc.userId);
 });
 

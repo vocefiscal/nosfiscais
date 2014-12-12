@@ -7,6 +7,11 @@
       </div>
 
       {{#if currentUser}}
+        {{#if currentUser.pollTapeVerificationsCount}}
+          <p class="text-center">
+            Você conferiu {{ currentUser.pollTapeVerificationsCount }} BU(s)! Parabéns :)
+          </p>
+        {{/if}}
         <div id="content" class="column col-md-6">
           <div id="pollTapeSubmissionPictures">
             <h3>{{ city }}, {{ stateCode }}</h3>
