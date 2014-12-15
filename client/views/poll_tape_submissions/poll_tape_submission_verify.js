@@ -56,6 +56,10 @@ Template.pollTapeSubmissionVerify.helpers({
   remainingVerificationsCount: function () {
     return (Counts.get('pollTapeSubmissions') * 3) -
       Counts.get('pollTapeVerifications');
+  },
+  areCityAndStateCorrectLabel: function () {
+    return "Município e estado conferem com: " + this.city +
+    ", " + this.stateCode + " ?";
   }
 });
 

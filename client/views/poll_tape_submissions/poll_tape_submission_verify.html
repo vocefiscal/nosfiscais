@@ -45,9 +45,15 @@
                 {{> afQuickField name='isReadable' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true tabindex="3"}}
                 {{> afQuickField name='isSigned' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true tabindex="4"}}
                 {{#if isPollTapeAndCompleteAndReadable}}
-                  {{> afQuickField name='electionRound' tabindex="5" class="input-number–noSpinners"}}
-                  {{> afQuickField name='electionZone' tabindex="6" class="input-number–noSpinners"}}
-                  {{> afQuickField name='electoralSection' tabindex="7" class="input-number–noSpinners"}}
+                  {{> afQuickField name='areCityAndStateCorrect' type="boolean-radios" label=areCityAndStateCorrectLabel trueLabel="Sim" falseLabel="Não" noselect=true tabindex="5"}}
+                  {{#if afFieldValueIs name='areCityAndStateCorrect' value=false}}
+                    <p>
+                      Tudo bem, pegaremos a cidade e o estado corretos a partir da zona e da seção eleitoral.
+                    </p>
+                  {{/if}}
+                  {{> afQuickField name='electionRound' tabindex="6" class="input-number–noSpinners"}}
+                  {{> afQuickField name='electionZone' tabindex="7" class="input-number–noSpinners"}}
+                  {{> afQuickField name='electoralSection' tabindex="8" class="input-number–noSpinners"}}
                 {{/if}}
               {{/if}}
             </fieldset>
@@ -67,8 +73,13 @@
                         Encontre o BU eletrônico correspondente às fotos ao lado
                         entrando com:<br />
                         - turno: {{formElectionRound}},<br />
-                        - UF: {{stateCode}},<br />
-                        - município: {{city}},<br />
+                        {{#if afFieldValueIs name='areCityAndStateCorrect' value=true}}
+                          - UF: {{stateCode}},<br />
+                          - município: {{city}},<br />
+                        {{else}}
+                          - UF: &lt;sigla do estado&gt;,<br />
+                          - município: &lt;nome do município&gt;,<br />
+                        {{/if}}
                         - zona: {{formElectionZone}},<br />
                         - seção: {{formElectoralSection}}<br />
                         e clicando em <strong>"Pesquisar"</strong>.
@@ -82,17 +93,17 @@
                   </ol>
                 </p>
                 <div class="well">
-                  {{> afQuickField name='isHonorCoded' type="boolean-radios" trueLabel="Sim, comparei cada campo da foto com o site do TSE." falseLabel="Não, apenas fiz a leitura do turno, da zona eleitoral e da seção eleitoral (triagem)." noselect=true tabindex="8"}}
+                  {{> afQuickField name='isHonorCoded' type="boolean-radios" trueLabel="Sim, comparei cada campo da foto com o site do TSE." falseLabel="Não, apenas fiz a leitura do turno, da zona eleitoral e da seção eleitoral (triagem)." noselect=true tabindex="9"}}
                   {{#if isHonorCoded}}
-                    {{> afQuickField name='isAnythingDifferentFromOfficial' type="boolean-radios" trueLabel="Sim. Tem coisa que não bate." falseLabel="Não. As informações estão corretas." noselect=true tabindex="9"}}
+                    {{> afQuickField name='isAnythingDifferentFromOfficial' type="boolean-radios" trueLabel="Sim. Tem coisa que não bate." falseLabel="Não. As informações estão corretas." noselect=true tabindex="10"}}
                   {{/if}}
                 </div>
               </fieldset>
             {{/if}}
             <hr />
-            {{> afQuickField name='comments' rows=6 tabindex="10"}}
+            {{> afQuickField name='comments' rows=6 tabindex="11"}}
 
-            <button type="submit" class="btn btn-primary" tabindex="11">Enviar conferência</button>
+            <button type="submit" class="btn btn-primary" tabindex="12">Enviar conferência</button>
           {{/autoForm}}
         </div>
       {{else}}
