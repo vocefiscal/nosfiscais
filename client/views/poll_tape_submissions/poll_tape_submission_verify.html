@@ -45,9 +45,9 @@
                 {{> afQuickField name='isReadable' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true tabindex="3"}}
                 {{> afQuickField name='isSigned' type="boolean-radios" trueLabel="Sim" falseLabel="Não" noselect=true tabindex="4"}}
                 {{#if isPollTapeAndCompleteAndReadable}}
-                  {{> afQuickField name='electionRound' tabindex="5"}}
-                  {{> afQuickField name='electionZone' tabindex="6"}}
-                  {{> afQuickField name='electoralSection' tabindex="7"}}
+                  {{> afQuickField name='electionRound' tabindex="5" class="input-number–noSpinners"}}
+                  {{> afQuickField name='electionZone' tabindex="6" class="input-number–noSpinners"}}
+                  {{> afQuickField name='electoralSection' tabindex="7" class="input-number–noSpinners"}}
                 {{/if}}
               {{/if}}
             </fieldset>

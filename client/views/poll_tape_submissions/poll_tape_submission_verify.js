@@ -58,3 +58,9 @@ Template.pollTapeSubmissionVerify.helpers({
       Counts.get('pollTapeVerifications');
   }
 });
+
+Template.pollTapeSubmissionVerify.events({
+  'mousewheel .input-number–noSpinners': function (e) {
+    e.preventDefault();
+  }
+});
