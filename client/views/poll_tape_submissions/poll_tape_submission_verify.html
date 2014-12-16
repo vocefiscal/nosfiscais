@@ -93,7 +93,7 @@
                   </ol>
                 </p>
                 <div class="well">
-                  {{> afQuickField name='isHonorCoded' type="boolean-radios" trueLabel="Sim, comparei cada campo da foto com o site do TSE." falseLabel="Não, apenas fiz a leitura do turno, da zona eleitoral e da seção eleitoral (triagem)." noselect=true tabindex="9"}}
+                  {{> afQuickField name='isHonorCoded' type="boolean-radios" trueLabel="Sim, comparei cada campo da foto com o site do TSE." falseLabel="Não consultei o site do TSE." noselect=true tabindex="9"}}
                   {{#if isHonorCoded}}
                     {{> afQuickField name='isAnythingDifferentFromOfficial' type="boolean-radios" trueLabel="Sim. Tem coisa que não bate." falseLabel="Não. As informações estão corretas." noselect=true tabindex="10"}}
                   {{/if}}
