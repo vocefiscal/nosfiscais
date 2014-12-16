@@ -68,3 +68,7 @@ Template.pollTapeSubmissionVerify.events({
     e.preventDefault();
   }
 });
+
+Template.pollTapeSubmissionVerify.rendered = function () {
+  document.title = "Você Fiscal—Conferência Coletiva dos Boletins de Urna";
+};
