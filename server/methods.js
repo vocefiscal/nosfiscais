@@ -1,3 +1,8 @@
+// From http://stackoverflow.com/a/4026828/105132
+Array.prototype.diff = function (a) {
+  return this.filter(function (i) { return a.indexOf(i) < 0; });
+};
+
 // *** Crowdchecking of Poll Tape Submissions
 
 function updateCurrentPtsForReviewId(userId) {
@@ -7,21 +12,47 @@ function updateCurrentPtsForReviewId(userId) {
       " does not exist.");
   }
 
-  var reviewedIds = _(PollTapeVerifications.find({ userId: user._id },
-    { fields: { _id: 1 } }).fetch()).pluck('_id');
+  var reviewedPtsIds = _(PollTapeVerifications.find(
+    { userId: user._id },
+    { fields: { pollTapeSubmissionId: 1 } }).fetch()).
+    pluck('pollTapeSubmissionId');
 
+  var suspectPtsIds = _(PollTapeVerifications.find(
+    { isAnythingDifferentFromOfficial: true },
+    { fields: { pollTapeSubmissionId: 1 } }).fetch()).
+    pluck('pollTapeSubmissionId');
+
+  var unreviewedSuspectPtsIds = suspectPtsIds.diff(reviewedPtsIds);
+
+  // First priority is getting more independent eyes on the flagged submissions
   var random = Math.random();
-
   var ptsForReview = PollTapeSubmissions.findOne({
-    _id: { $nin: reviewedIds },
-    verificationCount: 0,
+    _id: { $in: unreviewedSuspectPtsIds },
+    verificationCount: { $lt: 10 },
     random: { $gte: random }
   });
 
   if ( !ptsForReview ) {
     ptsForReview = PollTapeSubmissions.findOne({
-      _id: { $nin: reviewedIds },
-      verificationCount: 0,
+      _id: { $in: unreviewedSuspectPtsIds },
+      verificationCount: { $lt: 10 },
+      random: { $lte: random }
+    });
+  }
+
+  // Then proceed to the ones with the least number of reviews
+  if ( !ptsForReview ) {
+    ptsForReview = PollTapeSubmissions.findOne({
+      _id: { $nin: reviewedPtsIds },
+      verificationCount: { $lt: 3 },
+      random: { $gte: random }
+    });
+  }
+
+  if ( !ptsForReview ) {
+    ptsForReview = PollTapeSubmissions.findOne({
+      _id: { $nin: reviewedPtsIds },
+      verificationCount: { $lt: 3 },
       random: { $lte: random }
     });
   }
