@@ -58,7 +58,7 @@ Template.pollTapeSubmissionVerify.helpers({
       Counts.get('pollTapeVerifications');
   },
   areCityAndStateCorrectLabel: function () {
-    return "Município e estado conferem com: " + this.city +
+    return "5. Município e estado conferem com: " + this.city +
     ", " + this.stateCode + " ?";
   }
 });
