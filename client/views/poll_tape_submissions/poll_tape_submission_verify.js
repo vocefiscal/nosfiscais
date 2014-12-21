@@ -1,4 +1,10 @@
 Template.pollTapeSubmissionVerify.helpers({
+  pShowOnlineUsers: function () {
+    return Meteor.users.find({ "status.online": true }).count() > 3;
+  },
+  onlineUsersCount: function () {
+    return Meteor.users.find({ "status.online": true }).count();
+  },
   isPollTape: function () {
     var formId = 'insertPollTapeVerificationForm';
     var isPollTape = AutoForm.getFieldValue(formId, 'isPollTape');

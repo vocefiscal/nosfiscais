@@ -30,6 +30,7 @@ cfs:tempstore@0.1.2
 cfs:upload-http@0.0.18
 cfs:worker@0.1.2
 check@1.0.2
+coffeescript@1.0.4
 ctl-helper@1.0.4
 ctl@1.0.2
 ddp@1.0.12
@@ -70,6 +71,8 @@ meteorhacks:kadira@2.15.2
 meteorhacks:meteorx@1.2.1
 minifiers@1.1.2
 minimongo@1.0.5
+mizzao:timesync@0.2.2
+mizzao:user-status@0.6.3
 mobile-status-bar@1.0.1
 mongo-livedata@1.0.6
 mongo@1.0.9

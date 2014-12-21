@@ -9,6 +9,9 @@
       {{#if currentUser}}
         {{#if currentUser.pollTapeVerificationsCount}}
           <p class="text-center">
+            {{#if pShowOnlineUsers}}
+              {{onlineUsersCount}} fiscais online |
+            {{/if}}
             Conferências suas: {{ currentUser.pollTapeVerificationsCount }} |
             Conferências até agora: {{getPublishedCount 'pollTapeVerifications'}} |
             Conferências faltantes*: {{remainingVerificationsCount}}<br />

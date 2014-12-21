@@ -38,3 +38,10 @@ Meteor.publish('userData', function () {
     this.ready();
   }
 });
+
+Meteor.publish("userStatus", function () {
+  return Meteor.users.find({ "status.online": true }, { fields: {
+    status: 1,
+    pollTapeVerificationsCount: 1
+ } });
+});
