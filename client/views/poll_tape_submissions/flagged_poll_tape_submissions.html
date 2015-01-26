@@ -1,0 +1,89 @@
+<template name="flaggedPollTapeSubmissions">
+  <div class="container">
+    <div class="row">
+      <div class="column col-md-12">
+        <div id="pagination-nav-top" class="row">
+          <h1>Boletins de urna com divergências apontadas por conferência coletiva</h1>
+          {{> pagesNav}}
+        </div>
+        <div id="pagination-body" class="row">
+          {{> pages}}
+        </div>
+        <div id="pagination-nav-bottom" class="row">
+          {{> pagesNav}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="flaggedPollTapeSubmissionItem">
+  <div id="pollTapeSubmissionInfo" class="column col-md-6">
+    <table class="table">
+      <tr>
+        <td>
+          Fiscais:
+        </td>
+        <td>
+          {{verificationCount}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Apontaram divergência:
+        </td>
+        <td>
+          {{flaggedCount}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Turno:
+        </td>
+        <td>
+          {{electionRound}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Cidade:
+        </td>
+        <td>
+          {{city}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Estado:
+        </td>
+        <td>
+          {{stateCode}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Zona eleitoral:
+        </td>
+        <td>
+          {{electionZone}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Seção eleitoral:
+        </td>
+        <td>
+          {{electoralSection}}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="pollTapeSubmissionPictures" class="column col-md-6">
+    <p>
+      Clique na foto para ampliar.
+    </p>
+    {{#each pictureURLs}}
+    <a href="{{ this }}" target="_blank"><img src="{{ this }}" alt="" width="420" /></a>
+    {{/each}}
+  </div>
+</template>

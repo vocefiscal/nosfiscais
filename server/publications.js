@@ -6,7 +6,7 @@ Meteor.publish('pollTapeSubmissionsCount', function () {
   Counts.publish(this, 'pollTapeSubmissions', PollTapeSubmissions.find());
 });
 
-Meteor.publish('pollTapeSubmissions', function (ids) {
+Meteor.publish('pollTapeSubmissionsFromIds', function (ids) {
   return PollTapeSubmissions.find({ _id: { $in: ids } });
 });
 

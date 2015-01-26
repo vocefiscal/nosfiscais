@@ -82,8 +82,10 @@ PollTapeVerifications.allow({
 });
 
 PollTapeVerifications.after.insert(function (userId, doc) {
+  var flaggedInc = doc.isAnythingDifferentFromOfficial ? 1 : 0;
+
   PollTapeSubmissions.update(doc.pollTapeSubmissionId, { $inc: {
-    verificationCount: 1 } });
+    verificationCount: 1, flaggedCount: flaggedInc } });
 
   var ptvsCount = PollTapeVerifications.find({ userId: userId }).count();
   Meteor.users.update(userId, { $set: {

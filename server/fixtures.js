@@ -204,3 +204,18 @@ if (PollTapeSubmissions.find().count() === 0) {
     PollTapeSubmissions.insert(newPollTapeSubmission);
   });
 }
+
+// Migration #9: denormalize flaggedCount into submission collection so we can
+// rank it by "most suspicious"
+if (PollTapeSubmissions.findOne().flaggedCount === undefined) {
+  // Initialize all flaggedCounts as 0
+  PollTapeSubmissions.update({}, { $set: { flaggedCount: 0 } }, { multi:true });
+
+  // Increment flaggeCount based on user verifications
+  PollTapeVerifications.find({ isAnythingDifferentFromOfficial: true }).forEach(
+    function (ptVerification) {
+      PollTapeSubmissions.update(ptVerification.pollTapeSubmissionId,
+        { $inc: { flaggedCount: 1 } });
+    }
+  );
+}
