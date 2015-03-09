@@ -5,6 +5,24 @@ Array.prototype.diff = function (a) {
 
 // *** Crowdchecking of Poll Tape Submissions
 
+Meteor.methods({
+  oknok: function (pollTapeSubmissionId, oknok) {
+    var user = Meteor.user();
+    // ensure the user is logged in
+    if (!user) {
+      throw new Meteor.Error(401, "Você precisa fazer login");
+    }
+
+    var pts = PollTapeSubmissions.findOne({ _id: pollTapeSubmissionId });
+
+    if (!pts) {
+      throw new Meteor.Error(422, 'Submissão não encontrada');
+    }
+
+    PollTapeSubmissions.update({_id: pts._id }, { $set: { oknok: oknok } });
+  }
+});
+
 function updateCurrentPtsForReviewId(userId) {
   var user = Meteor.users.findOne(userId);
   if (! user) {

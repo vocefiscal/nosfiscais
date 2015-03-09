@@ -76,7 +76,21 @@
           {{electoralSection}}
         </td>
       </tr>
+      <tr>
+        <td>
+          Avaliação do Você Fiscal:
+        </td>
+        <td>
+          {{oknokStatus}}
+        </td>
+      </tr>
     </table>
+    {{#if currentUser.isAdmin}}
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default ok {{okActive}}" style="outline: none;">OK</button>
+        <button type="button" class="btn btn-default nok {{nokActive}}" style="outline: none;">NOT OK</button>
+      </div>
+    {{/if}}
   </div>
   <div id="pollTapeSubmissionPictures" class="column col-md-6">
     <p>

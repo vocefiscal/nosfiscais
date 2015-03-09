@@ -32,7 +32,8 @@ Meteor.publish('userData', function () {
       'monitored_locator_slugs': 1,
       'monitored_locators_count': 1,
       'currentPollTapeSubmissionForReviewId': 1,
-      'pollTapeVerificationsCount': 1
+      'pollTapeVerificationsCount': 1,
+      'isAdmin': 1
     } });
   } else {
     this.ready();
